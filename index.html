@@ -12,9 +12,8 @@
 
 <style>
 :root{
-  --bg:#050708;
+  --bg:#000000;
   --panel:#090e10;
-  --panel2:#0c1214;
   --text:#edf4f4;
   --muted:#8d9da0;
   --line:#1d2a2d;
@@ -25,89 +24,256 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;background:
-  radial-gradient(circle at 85% 8%,rgba(255,123,37,.08),transparent 28%),
-  radial-gradient(circle at 8% 35%,rgba(22,224,192,.065),transparent 28%),
-  var(--bg);color:var(--text);
-  font-family:Inter,system-ui,sans-serif;line-height:1.6
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif;
+  line-height:1.6;
 }
 body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
-  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 80%);
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.06;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,#000,transparent 80%);
 }
+.pcb-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.48;mix-blend-mode:screen}
+nav, main, footer, section, .terminal-profile, .scope-wrap{position:relative;z-index:1}
+main{isolation:isolate}
 a{color:inherit;text-decoration:none}
-img{max-width:100%}
+img{max-width:100%;display:block}
 .container{width:min(var(--max),calc(100% - 48px));margin:auto}
 
-.progress{position:fixed;top:0;left:0;height:2px;background:var(--cyan);width:0;z-index:1000;box-shadow:0 0 14px var(--cyan)}
+.progress{
+  position:fixed;top:0;left:0;height:2px;background:var(--cyan);
+  width:0;z-index:1000;box-shadow:0 0 14px var(--cyan)
+}
 
 nav{
-  position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);
-  background:rgba(5,7,8,.78);border-bottom:1px solid rgba(255,255,255,.06)
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(16px);
+  background:rgba(0,0,0,.90);
+  border-bottom:1px solid rgba(255,255,255,.06)
 }
-.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:"DM Mono",monospace;font-weight:500;letter-spacing:-1px;font-size:20px}
+.nav-inner{
+  height:72px;display:flex;align-items:center;justify-content:space-between
+}
+.logo{
+  font-family:"DM Mono",monospace;font-weight:500;
+  letter-spacing:-1.2px;font-size:20px
+}
 .logo span{color:var(--cyan)}
-.navlinks{display:flex;gap:27px;color:#aeb9bb;font-size:14px}
-.navlinks a{transition:.2s}.navlinks a:hover{color:var(--cyan)}
+.navlinks{display:flex;gap:30px;color:#aeb9bb;font-size:14px}
+.navlinks a{transition:.2s}
+.navlinks a:hover{color:var(--cyan)}
 .btn{
-  display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);
-  padding:11px 17px;border-radius:999px;font-size:14px;font-weight:600;
-  transition:.25s
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--line);padding:11px 17px;border-radius:999px;
+  font-size:14px;font-weight:600;transition:.25s
 }
 .btn:hover{transform:translateY(-2px);border-color:var(--cyan)}
 .btn.primary{background:var(--cyan);color:#03100e;border-color:var(--cyan)}
 
 section{padding:105px 0}
-.eyebrow{font:500 12px "DM Mono",monospace;letter-spacing:2px;text-transform:uppercase;color:var(--cyan)}
-.hero{min-height:calc(100vh - 72px);display:flex;align-items:center;padding:70px 0 100px}
-.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:center}
-h1{
-  font-size:clamp(62px,8.6vw,124px);line-height:.87;letter-spacing:-7px;
-  margin:22px 0 35px;font-weight:800
+.visual-lab{position:relative;overflow:hidden;background:#000000;border-top:1px solid rgba(22,224,192,.05);border-bottom:1px solid rgba(22,224,192,.05)}
+.visual-lab > .container{position:relative;z-index:2}
+.visual-lab .pcb-bg{opacity:.34}
+.eyebrow{
+  font:500 12px "DM Mono",monospace;
+  letter-spacing:2px;text-transform:uppercase;color:var(--cyan)
 }
-h1 .cyan{color:var(--cyan)} h1 .orange{color:var(--orange)}
-.lead{max-width:760px;color:var(--muted);font-size:18px;line-height:1.85}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.profile-wrap{position:relative;display:flex;justify-content:center}
+
+/* HERO — follows the reference layout */
+.hero{
+  min-height:calc(100vh - 72px);
+  display:flex;align-items:center;
+  padding:70px 0 85px;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+  gap:65px;
+  align-items:center;
+}
+.hero-copy{padding-top:4px}
+h1{
+  font-size:clamp(64px,7.3vw,112px);
+  line-height:.88;
+  letter-spacing:-6px;
+  margin:22px 0 36px;
+  font-weight:800;
+  max-width:780px;
+}
+h1 .cyan{color:var(--cyan)}
+h1 .orange{color:var(--orange)}
+.lead{
+  max-width:735px;color:var(--muted);
+  font-size:17px;line-height:1.9
+}
+.lead strong{color:#cbd6d7}
+.hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;margin-top:32px
+}
+
+/* Profile photo */
+.profile-wrap{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:560px;
+}
+.profile-frame{
+  position:relative;
+  width:min(370px,82%);
+  padding:12px;
+  border-radius:190px 190px 28px 28px;
+  background:#070b0c;
+  box-shadow:
+    0 0 0 1px rgba(22,224,192,.10),
+    0 35px 90px rgba(0,0,0,.55);
+  animation:profileFloat 6s ease-in-out infinite;
+}
 .profile{
-  width:min(360px,75vw);aspect-ratio:4/5;object-fit:cover;
-  object-position:center;border-radius:180px 180px 24px 24px;
-  border:1px solid #294044;filter:saturate(.9);
-  box-shadow:0 0 0 12px rgba(22,224,192,.025),0 30px 100px rgba(0,0,0,.55);
-  animation:float 5s ease-in-out infinite
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  object-position:center;
+  border-radius:180px 180px 18px 18px;
+  border:1px solid #294044;
+  filter:saturate(.92);
+}
+.profile-glow{
+  position:absolute;inset:-22px;
+  border-radius:210px 210px 45px 45px;
+  border:1px solid rgba(22,224,192,.07);
+  pointer-events:none;
 }
 .profile-tag{
-  position:absolute;bottom:28px;left:4%;background:rgba(7,11,12,.92);
-  border:1px solid var(--line);padding:14px 17px;border-radius:14px;backdrop-filter:blur(10px)
+  position:absolute;
+  bottom:24px;
+  left:-20px;
+  background:rgba(7,11,12,.94);
+  border:1px solid var(--line);
+  padding:14px 17px;
+  border-radius:14px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
 }
-.profile-tag strong{display:block;font-size:18px}.profile-tag small{color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stat{padding:25px 18px}.stat+.stat{border-left:1px solid var(--line)}
-.stat b{font-size:30px}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.profile-tag strong{display:block;font-size:18px}
+.profile-tag small{
+  display:block;color:var(--muted);
+  font:12px "DM Mono";margin-top:3px
+}
 
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
-h2{font-size:clamp(38px,5vw,68px);line-height:.95;letter-spacing:-3px;margin:12px 0}
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)
+}
+.stat{padding:25px 18px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{font-size:30px}
+.stat span{
+  display:block;color:var(--muted);
+  font-size:12px;margin-top:3px
+}
+
+.section-head{
+  display:flex;justify-content:space-between;
+  gap:30px;align-items:end;margin-bottom:45px
+}
+h2{
+  font-size:clamp(38px,5vw,68px);
+  line-height:.95;letter-spacing:-3px;margin:12px 0
+}
 .section-copy{max-width:520px;color:var(--muted)}
 
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{
-  background:linear-gradient(145deg,#0a1011,#080b0c);border:1px solid var(--line);
-  border-radius:20px;padding:27px;min-height:250px;transition:.3s
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px
 }
-.card:hover{transform:translateY(-7px);border-color:#28575b;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.card{
+  background:linear-gradient(145deg,#0a1011,#080b0c);
+  border:1px solid var(--line);
+  border-radius:20px;padding:27px;min-height:250px;
+  transition:.3s
+}
+.card:hover{
+  transform:translateY(-7px);
+  border-color:#28575b;
+  box-shadow:0 20px 60px rgba(0,0,0,.25)
+}
 .card .num{font:12px "DM Mono";color:var(--orange)}
-.card h3{font-size:24px;margin:45px 0 12px}.card p{color:var(--muted);font-size:14px}
+.card h3{font-size:24px;margin:45px 0 12px}
+.card p{color:var(--muted);font-size:14px}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.tag{font:11px "DM Mono";border:1px solid var(--line);padding:6px 9px;border-radius:999px;color:#aab8ba}
+.tag{
+  font:11px "DM Mono";border:1px solid var(--line);
+  padding:6px 9px;border-radius:999px;color:#aab8ba
+}
 
-.work-photo{position:relative;overflow:hidden;border-radius:26px;border:1px solid var(--line);min-height:560px}
-.work-photo img{width:100%;height:560px;object-fit:cover;object-position:center;filter:grayscale(1) contrast(.95);transition:1s}
+/* Terminal */
+.terminal-profile{margin:80px auto;width:min(1180px,calc(100% - 48px))}
+.terminal-window{
+  overflow:hidden;border:1px solid rgba(22,216,189,.20);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(255,123,25,.06),transparent 32%),
+    #071012;
+  box-shadow:0 30px 90px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.035);
+  transition:.35s
+}
+.terminal-window:hover{
+  transform:translateY(-5px);
+  border-color:rgba(22,216,189,.38);
+  box-shadow:0 35px 100px rgba(0,0,0,.48),0 0 45px rgba(22,216,189,.055)
+}
+.terminal-bar{
+  height:52px;display:flex;align-items:center;padding:0 20px;
+  border-bottom:1px solid rgba(255,255,255,.065);
+  background:rgba(255,255,255,.025)
+}
+.terminal-lights{display:flex;gap:8px}
+.terminal-lights i{
+  width:10px;height:10px;border-radius:50%;display:block
+}
+.terminal-lights i:nth-child(1){background:#ff5f56}
+.terminal-lights i:nth-child(2){background:#ffbd2e}
+.terminal-lights i:nth-child(3){background:#27c93f}
+.terminal-title{margin-left:16px;color:#6f858b;font:13px "DM Mono"}
+.terminal-body{
+  padding:38px clamp(22px,4vw,52px) 42px;
+  color:#9aadb2;font:clamp(14px,1.45vw,18px)/2.15 "DM Mono"
+}
+.terminal-command{display:flex;flex-wrap:wrap;gap:13px}
+.prompt{color:var(--cyan);font-weight:700}
+.terminal-code{margin:28px 0 24px}
+.terminal-code>div{white-space:pre-wrap}
+.terminal-code .comment{color:#536970;margin-bottom:9px}
+.terminal-code .key{color:#c7d2d5}
+.terminal-code .value{color:var(--orange)}
+.terminal-status{margin-top:6px}
+.terminal-status strong{color:var(--orange);font-weight:500}
+.terminal-cursor{
+  display:inline-block;width:10px;height:20px;margin-left:7px;
+  vertical-align:-3px;background:var(--cyan);
+  animation:blink 1s steps(1,end) infinite
+}
+
+.work-photo{
+  position:relative;overflow:hidden;border-radius:26px;
+  border:1px solid var(--line);min-height:560px
+}
+.work-photo img{
+  width:100%;height:560px;object-fit:cover;
+  object-position:center;filter:grayscale(1) contrast(.95);
+  transition:1s
+}
 .work-photo:hover img{transform:scale(1.035)}
 .work-overlay{
-  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:end;padding:45px;
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  justify-content:end;padding:45px;
   background:linear-gradient(transparent 40%,rgba(0,0,0,.88))
 }
 .work-overlay h2{max-width:700px;margin:8px 0;font-size:clamp(38px,6vw,78px)}
@@ -116,75 +282,199 @@ h2{font-size:clamp(38px,5vw,68px);line-height:.95;letter-spacing:-3px;margin:12p
 .timeline{border-left:1px solid var(--line);margin-left:12px}
 .timeline-item{position:relative;padding:0 0 45px 35px}
 .timeline-item:before{
-  content:"";position:absolute;left:-5px;top:7px;width:9px;height:9px;border-radius:50%;
+  content:"";position:absolute;left:-5px;top:7px;
+  width:9px;height:9px;border-radius:50%;
   background:var(--cyan);box-shadow:0 0 20px var(--cyan)
 }
 .timeline-item .year{font:12px "DM Mono";color:var(--orange)}
-.timeline-item h3{margin:8px 0 3px;font-size:23px}.timeline-item p{margin:0;color:var(--muted)}
+.timeline-item h3{margin:8px 0 3px;font-size:23px}
+.timeline-item p{margin:0;color:var(--muted)}
 
-.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.skill{border:1px solid var(--line);padding:18px;border-radius:14px;font:13px "DM Mono";color:#c8d2d3;transition:.25s}
-.skill:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.skills{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px
+}
+.skill{
+  border:1px solid var(--line);padding:18px;border-radius:14px;
+  font:13px "DM Mono";color:#c8d2d3;transition:.25s
+}
+.skill:hover{
+  border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)
+}
 
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.blog{border:1px solid var(--line);border-radius:20px;padding:26px;transition:.3s;background:#080c0d}
+.blog-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px
+}
+.blog{
+  border:1px solid var(--line);border-radius:20px;padding:26px;
+  transition:.3s;background:#080c0d
+}
 .blog:hover{transform:translateY(-5px);border-color:#28575b}
 .blog .date{font:11px "DM Mono";color:var(--orange)}
-.blog h3{font-size:22px;line-height:1.2}.blog p{color:var(--muted);font-size:14px}
+.blog h3{font-size:22px;line-height:1.2}
+.blog p{color:var(--muted);font-size:14px}
 
-/* Terminal profile */
-.terminal-profile{margin:80px auto;width:min(1180px,calc(100% - 48px))}
-.terminal-window{
-  overflow:hidden;border:1px solid rgba(22,216,189,.20);border-radius:20px;
-  background:radial-gradient(circle at 85% 20%,rgba(255,123,25,.06),transparent 32%),#071012;
-  box-shadow:0 30px 90px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.035);
-  transition:.35s
+footer{
+  border-top:1px solid var(--line);
+  padding:50px 0 35px;color:var(--muted)
 }
-.terminal-window:hover{
-  transform:translateY(-5px);border-color:rgba(22,216,189,.38);
-  box-shadow:0 35px 100px rgba(0,0,0,.48),0 0 45px rgba(22,216,189,.055)
+.footer-grid{
+  display:flex;justify-content:space-between;
+  gap:20px;flex-wrap:wrap
 }
-.terminal-bar{
-  height:52px;display:flex;align-items:center;padding:0 20px;
-  border-bottom:1px solid rgba(255,255,255,.065);background:rgba(255,255,255,.025)
+.mono{font-family:"DM Mono"}
+
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .8s ease,transform .8s ease
 }
-.terminal-lights{display:flex;gap:8px}.terminal-lights i{width:10px;height:10px;border-radius:50%;display:block}
-.terminal-lights i:nth-child(1){background:#ff5f56}.terminal-lights i:nth-child(2){background:#ffbd2e}.terminal-lights i:nth-child(3){background:#27c93f}
-.terminal-title{margin-left:16px;color:#6f858b;font:13px "DM Mono"}
-.terminal-body{padding:38px clamp(22px,4vw,52px) 42px;color:#9aadb2;font:clamp(14px,1.45vw,18px)/2.15 "DM Mono"}
-.terminal-command{display:flex;flex-wrap:wrap;gap:13px}.prompt{color:var(--cyan);font-weight:700}
-.terminal-code{margin:28px 0 24px}.terminal-code>div{white-space:pre-wrap}
-.terminal-code .comment{color:#536970;margin-bottom:9px}.terminal-code .key{color:#c7d2d5}.terminal-code .value{color:var(--orange)}
-.terminal-status{margin-top:6px}.terminal-status strong{color:var(--orange);font-weight:500}
-.terminal-cursor{display:inline-block;width:10px;height:20px;margin-left:7px;vertical-align:-3px;background:var(--cyan);animation:blink 1s steps(1,end) infinite}
+.reveal.visible{opacity:1;transform:none}
+
+@keyframes profileFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-9px)}
+}
 @keyframes blink{50%{opacity:0}}
 
-footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
-.footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.mono{font-family:"DM Mono"}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1;transform:none}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-
-@media(max-width:850px){
-  .navlinks{display:none}.hero-grid{grid-template-columns:1fr}.hero{padding-top:60px}
-  .profile-wrap{order:-1}.cards,.blog-grid{grid-template-columns:1fr}
-  .skills{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:1fr}
-  .stat+.stat{border-left:0;border-top:1px solid var(--line)}h1{letter-spacing:-4px}
+@media(max-width:900px){
+  .navlinks{display:none}
+  .hero{padding-top:55px}
+  .hero-grid{grid-template-columns:1fr;gap:35px}
+  .profile-wrap{order:-1;min-height:auto}
+  .profile-frame{width:min(330px,72vw)}
+  .profile-tag{left:calc(50% - 190px)}
+  .cards,.blog-grid{grid-template-columns:1fr}
+  .skills{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:1fr}
+  .stat+.stat{border-left:0;border-top:1px solid var(--line)}
+  h1{letter-spacing:-4px}
 }
 @media(max-width:650px){
-  .container{width:calc(100% - 28px)}section{padding:75px 0}
+  .container{width:calc(100% - 28px)}
+  section{padding:75px 0}
+  .hero{min-height:auto;padding:55px 0 70px}
+  h1{font-size:clamp(55px,16vw,82px);letter-spacing:-4px}
+  .lead{font-size:15px}
+  .profile-frame{width:min(310px,78vw)}
+  .profile-tag{left:5px;bottom:15px}
   .terminal-profile{width:calc(100% - 28px);margin:55px auto}
   .terminal-body{padding:27px 18px 31px;font-size:12px;line-height:1.9}
-  .terminal-title{font-size:11px}.terminal-bar{height:46px;padding:0 14px}
-  .work-photo{min-height:430px}.work-photo img{height:430px}
+  .terminal-title{font-size:11px}
+  .terminal-bar{height:46px;padding:0 14px}
+  .work-photo{min-height:430px}
+  .work-photo img{height:430px}
   .work-overlay{padding:25px}
-  .skills{grid-template-columns:1fr}.section-head{display:block}
+  .skills{grid-template-columns:1fr}
+  .section-head{display:block}
 }
+
+
+/* SYSTEMS GLOBE + OSCILLOSCOPE */
+.visual-lab{position:relative;overflow:hidden;padding:85px 0 30px}
+.visual-lab-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:stretch}
+.globe-panel,.scope-panel{
+  position:relative;overflow:hidden;min-height:520px;border:1px solid var(--line);
+  border-radius:24px;background:linear-gradient(145deg,#071012,#050809);
+  box-shadow:0 25px 80px rgba(0,0,0,.30),inset 0 1px rgba(255,255,255,.03)
+}
+.globe-panel:after,.scope-panel:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 45%,rgba(22,224,192,.06),transparent 48%);
+}
+.visual-label{position:absolute;top:24px;left:26px;z-index:3;font:12px "DM Mono",monospace;letter-spacing:2px;color:var(--cyan);text-transform:uppercase}
+.visual-quote{position:absolute;left:26px;right:26px;bottom:25px;z-index:3;max-width:620px}
+.visual-quote h3{font-size:clamp(24px,3vw,38px);line-height:1.08;letter-spacing:-1.4px;margin:0 0 9px}
+.visual-quote p{margin:0;color:var(--muted);font-size:13px}
+#globeCanvas{width:100%;height:100%;min-height:520px;display:block}
+.scope-panel{
+  padding:0 0 22px;
+  min-height:390px;
+  background:
+    radial-gradient(circle at 18% 42%,rgba(22,224,192,.055),transparent 22%),
+    radial-gradient(circle at 82% 62%,rgba(255,123,37,.045),transparent 24%),
+    linear-gradient(145deg,#05090a,#030708 68%,#050a0b);
+}
+.scope-top{position:absolute;top:22px;left:24px;right:24px;z-index:3;display:flex;justify-content:space-between;align-items:center}
+.scope-title{font:12px "DM Mono";letter-spacing:1.8px;color:var(--cyan)}
+.scope-live{font:11px "DM Mono";color:var(--orange);display:flex;align-items:center;gap:7px}
+.scope-live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange);animation:scopeBlink 1s steps(1,end) infinite}
+#scopeCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+.scope-pcb-label{
+  position:absolute;right:24px;bottom:50px;z-index:1;
+  font:9px "DM Mono",monospace;letter-spacing:2px;
+  color:rgba(22,224,192,.18);text-transform:uppercase
+}
+.scope-panel:before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;
+  background:
+    radial-gradient(circle at 12% 22%,rgba(22,224,192,.22) 0 2px,transparent 2.8px),
+    radial-gradient(circle at 88% 76%,rgba(255,123,37,.16) 0 2px,transparent 2.8px),
+    linear-gradient(90deg,transparent 0 8%,rgba(22,224,192,.055) 8.1% 8.25%,transparent 8.35% 100%);
+}
+.scope-readout{position:absolute;left:24px;right:24px;bottom:22px;z-index:3;display:flex;gap:10px;flex-wrap:wrap}
+.scope-chip{border:1px solid var(--line);border-radius:999px;padding:7px 10px;background:rgba(5,8,9,.78);font:10px "DM Mono";color:#9eafb2}
+.scope-chip strong{color:#dbe4e5;font-weight:500}
+@keyframes scopeBlink{50%{opacity:.35}}
+@media(max-width:900px){
+  .visual-lab-grid{grid-template-columns:1fr}
+  .globe-panel,.scope-panel,#globeCanvas{min-height:440px}
+}
+@media(max-width:650px){
+  .visual-lab{padding:60px 0 10px}
+  .globe-panel,.scope-panel,#globeCanvas{min-height:390px}
+  .visual-label{top:18px;left:18px}
+  .visual-quote{left:18px;right:18px;bottom:18px}
+  .scope-top{top:18px;left:18px;right:18px}
+  .scope-readout{left:18px;right:18px;bottom:16px}
+}
+
+/* Local animated PCB/circuit accents — intentionally limited to selected sections */
+.circuit-zone{position:relative;overflow:hidden;background:#000}
+.circuit-zone::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.34;
+ background:
+  radial-gradient(circle at 12% 22%,rgba(22,224,192,.24) 0 2px,transparent 3px),
+  radial-gradient(circle at 84% 72%,rgba(255,123,37,.22) 0 2px,transparent 3px),
+  linear-gradient(90deg,transparent 0 11%,rgba(22,224,192,.20) 11.1% 11.25%,transparent 11.35% 31%,rgba(22,224,192,.12) 31.1% 31.2%,transparent 31.3% 100%),
+  linear-gradient(0deg,transparent 0 25%,rgba(22,224,192,.16) 25.1% 25.25%,transparent 25.35% 64%,rgba(255,123,37,.13) 64.1% 64.22%,transparent 64.3% 100%);
+ background-size:180px 180px,240px 240px,100% 100%,100% 100%;
+ mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 10%,#000 90%,transparent);mask-composite:intersect;
+ animation:pcbDrift 18s linear infinite}
+.circuit-zone::after{content:"";position:absolute;width:340px;height:340px;right:-80px;top:15%;pointer-events:none;opacity:.18;
+ background:
+ radial-gradient(circle,transparent 0 44%,rgba(22,224,192,.55) 44.5% 45%,transparent 45.5%),
+ linear-gradient(90deg,transparent 49%,rgba(22,224,192,.35) 49.4% 50.6%,transparent 51%),
+ linear-gradient(0deg,transparent 49%,rgba(22,224,192,.35) 49.4% 50.6%,transparent 51%);
+ border-radius:50%;animation:pcbPulse 7s ease-in-out infinite}
+.circuit-zone>.container,.circuit-zone>.terminal-profile{position:relative;z-index:1}
+.circuit-chip{position:absolute;z-index:0;width:110px;height:76px;right:9%;top:30%;border:1px solid rgba(22,224,192,.22);border-radius:8px;opacity:.22;box-shadow:0 0 24px rgba(22,224,192,.04)}
+.circuit-chip:before,.circuit-chip:after{content:"";position:absolute;left:-28px;right:-28px;height:1px;background:repeating-linear-gradient(90deg,transparent 0 8px,rgba(22,224,192,.35) 8px 14px,transparent 14px 20px)}
+.circuit-chip:before{top:16px}.circuit-chip:after{bottom:16px}
+.circuit-chip i{position:absolute;left:18px;right:18px;top:22px;bottom:22px;border:1px solid rgba(255,123,37,.28);border-radius:3px}
+.circuit-node{position:absolute;z-index:0;width:8px;height:8px;border:1px solid rgba(22,224,192,.65);border-radius:50%;box-shadow:0 0 14px rgba(22,224,192,.5);opacity:.38;animation:nodeBlink 2.4s ease-in-out infinite}
+.circuit-node.n1{left:8%;top:18%}.circuit-node.n2{right:18%;top:68%;animation-delay:.8s}.circuit-node.n3{left:28%;bottom:14%;animation-delay:1.4s}
+@keyframes pcbDrift{from{background-position:0 0,0 0,0 0,0 0}to{background-position:180px 90px,-240px 120px,30px 0,0 35px}}
+@keyframes pcbPulse{50%{transform:scale(1.05);opacity:.26}100%{transform:scale(1)}}
+@keyframes nodeBlink{50%{opacity:.85;box-shadow:0 0 22px rgba(22,224,192,.8)}}
+@media(max-width:700px){.circuit-chip{right:-35px;top:22%;opacity:.14}.circuit-zone::before{opacity:.22}}
+
+
+/* FULL-PAGE PCB / ELECTRON FLOW LAYER */
+#pcbFlowCanvas{
+  position:fixed; inset:0; width:100vw; height:100vh;
+  z-index:0; pointer-events:none; display:block;
+  opacity:.82;
+}
+body{background:#000 !important;}
+body > *:not(#pcbFlowCanvas){position:relative;z-index:2;}
+main, section, footer{background:transparent !important;}
+nav{background:rgba(0,0,0,.78) !important;}
+/* make the PCB effect more visible around content edges */
+.pcb-vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at center,transparent 38%,rgba(0,0,0,.16) 76%,rgba(0,0,0,.45) 100%)}
+
 </style>
 </head>
 
 <body>
+<canvas id="pcbFlowCanvas" aria-hidden="true"></canvas><div class="pcb-vignette" aria-hidden="true"></div>
 <div class="progress" id="progress"></div>
 
 <nav>
@@ -203,16 +493,28 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
 
 <main id="top">
 
+<!-- HERO: this is the first section, matching the reference layout -->
 <section class="hero">
   <div class="container hero-grid">
-    <div class="reveal">
+
+    <div class="hero-copy reveal">
       <div class="eyebrow">Embedded Systems Engineer</div>
-      <h1>Building the layer between <span class="cyan">code</span> &amp; <span class="orange">hardware.</span></h1>
+
+      <h1>
+        Building the<br>
+        layer<br>
+        between<br>
+        <span class="cyan">code</span> &amp;<br>
+        <span class="orange">hardware.</span>
+      </h1>
+
       <p class="lead">
-        I'm <strong>RAJA PANDI</strong>, an Embedded Systems Engineer with 4+ years of hands-on
-        experience building real-world systems across firmware, electronics, PCB development and prototypes.
-        I work from low-level MCU drivers and sensors to motor control, communication interfaces and medical-device applications.
+        I'm <strong>RAJA PANDI</strong>, an Embedded Systems Engineer with 4+ years of
+        hands-on experience building real-world systems across firmware, electronics,
+        PCB development and prototypes. I work from low-level MCU drivers and sensors
+        to motor control, communication interfaces and medical-device applications.
       </p>
+
       <div class="hero-actions">
         <a class="btn primary" href="#projects">Explore my work ↓</a>
         <a class="btn" href="#blog">Engineering notes</a>
@@ -220,12 +522,17 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
     </div>
 
     <div class="profile-wrap reveal">
-      <img class="profile" src="profile%20photo.jpeg" alt="RAJA PANDI">
-      <div class="profile-tag">
-        <strong>4+ YEARS</strong>
-        <small>EMBEDDED ENGINEERING</small>
+      <div class="profile-frame">
+        <div class="profile-glow"></div>
+        <!-- Keep this filename exactly as it appears in your GitHub repository -->
+        <img class="profile" src="profile%20photo.jpeg" alt="RAJA PANDI">
+        <div class="profile-tag">
+          <strong>4+ YEARS</strong>
+          <small>EMBEDDED ENGINEERING</small>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -237,13 +544,17 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
   </div>
 </div>
 
-<section id="about">
+<section id="about" class="circuit-zone"><span class="circuit-chip"><i></i></span><span class="circuit-node n1"></span><span class="circuit-node n2"></span>
   <div class="container">
     <div class="section-head reveal">
-      <div><div class="eyebrow">01 — About</div><h2>From schematic<br>to system.</h2></div>
+      <div>
+        <div class="eyebrow">01 — About</div>
+        <h2>From schematic<br>to system.</h2>
+      </div>
       <p class="section-copy">
-        I work across the complete engineering path: understanding requirements, designing and debugging
-        electronics, writing firmware, validating signals and turning prototypes into working modules.
+        I work across the complete engineering path: understanding requirements,
+        designing and debugging electronics, writing firmware, validating signals
+        and turning prototypes into working modules.
       </p>
     </div>
 
@@ -272,7 +583,46 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
   </div>
 </section>
 
-<!-- Terminal profile is intentionally placed at the end of About, before Experience -->
+
+<section class="visual-lab" id="systems-visuals">
+  <canvas id="pcbBg" class="pcb-bg" aria-hidden="true"></canvas>
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">LIVE ENGINEERING VIEW</div>
+        <h2>Signals, systems<br>&amp; motion.</h2>
+      </div>
+      <p class="section-copy">A visual representation of the engineering layer I work in — connected systems on one side, real-time signals on the other.</p>
+    </div>
+
+    <div class="visual-lab-grid">
+      <div class="globe-panel reveal">
+        <div class="visual-label">SYSTEM MAP • EMBEDDED / HARDWARE</div>
+        <canvas id="globeCanvas" aria-label="Animated embedded systems globe"></canvas>
+        <div class="visual-quote">
+          <h3>“Good embedded engineering is where code, electronics and real-world signals become one system.”</h3>
+          <p>MCU • PCB • SENSOR • MOTOR • FIRMWARE</p>
+        </div>
+      </div>
+
+      <div class="scope-panel reveal">
+        <div class="scope-top">
+          <div class="scope-title">OSCILLOSCOPE / LIVE SIGNAL</div>
+          <div class="scope-live">RUNNING</div>
+        </div>
+        <div class="scope-pcb-label">PCB SIGNAL BACKPLANE • MCU • SENSOR • DRIVER • POWER</div>
+        <canvas id="scopeCanvas" aria-label="Animated oscilloscope sine and square wave"></canvas>
+        <div class="scope-readout">
+          <span class="scope-chip"><strong>CH1</strong> SINE</span>
+          <span class="scope-chip"><strong>CH2</strong> SQUARE</span>
+          <span class="scope-chip"><strong>INT</strong> 50 ms</span>
+          <span class="scope-chip"><strong>TICK</strong> 1 s</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="terminal-profile" id="profile-terminal">
   <div class="terminal-window">
     <div class="terminal-bar">
@@ -312,6 +662,7 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
 <section>
   <div class="container">
     <div class="work-photo reveal">
+      <!-- Keep this filename exactly as it appears in your GitHub repository -->
       <img src="working%20photo.jpeg" alt="RAJA PANDI working on an embedded engineering system">
       <div class="work-overlay">
         <div class="eyebrow">BUILDING • DEBUGGING • VALIDATING</div>
@@ -325,7 +676,10 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
 <section id="experience">
   <div class="container">
     <div class="section-head reveal">
-      <div><div class="eyebrow">02 — Experience</div><h2>Engineering<br>journey.</h2></div>
+      <div>
+        <div class="eyebrow">02 — Experience</div>
+        <h2>Engineering<br>journey.</h2>
+      </div>
     </div>
 
     <div class="timeline">
@@ -344,10 +698,13 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
   </div>
 </section>
 
-<section id="projects">
+<section id="projects" class="circuit-zone"><span class="circuit-chip"><i></i></span><span class="circuit-node n2"></span><span class="circuit-node n3"></span>
   <div class="container">
     <div class="section-head reveal">
-      <div><div class="eyebrow">03 — Selected Work</div><h2>Systems I've<br>worked on.</h2></div>
+      <div>
+        <div class="eyebrow">03 — Selected Work</div>
+        <h2>Systems I've<br>worked on.</h2>
+      </div>
       <p class="section-copy">A snapshot of embedded projects and technologies from industrial automation and medical-device development.</p>
     </div>
 
@@ -394,7 +751,10 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
 <section id="skills">
   <div class="container">
     <div class="section-head reveal">
-      <div><div class="eyebrow">04 — Toolbox</div><h2>Tools &amp;<br>technologies.</h2></div>
+      <div>
+        <div class="eyebrow">04 — Toolbox</div>
+        <h2>Tools &amp;<br>technologies.</h2>
+      </div>
     </div>
 
     <div class="skills">
@@ -422,10 +782,13 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
   </div>
 </section>
 
-<section id="blog">
+<section id="blog" class="circuit-zone"><span class="circuit-node n1"></span><span class="circuit-node n3"></span>
   <div class="container">
     <div class="section-head reveal">
-      <div><div class="eyebrow">05 — Engineering Blog</div><h2>Things I'm<br>learning.</h2></div>
+      <div>
+        <div class="eyebrow">05 — Engineering Blog</div>
+        <h2>Things I'm<br>learning.</h2>
+      </div>
       <p class="section-copy">A public engineering notebook for practical experiments, debugging lessons and embedded concepts.</p>
     </div>
 
@@ -464,11 +827,399 @@ footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
 </footer>
 
 <script>
+
+/* Animated systems globe */
+(function(){
+  const canvas=document.getElementById('globeCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  let w=0,h=0,dpr=1,rotation=0;
+  const nodes=[];
+  function resize(){
+    const r=canvas.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2);
+    w=r.width; h=r.height; canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function seed(){
+    nodes.length=0;
+    for(let lat=-70;lat<=70;lat+=14){
+      for(let lon=-180;lon<180;lon+=14){
+        if(Math.random()<.78) nodes.push({lat:lat+(Math.random()-.5)*4,lon:lon+(Math.random()-.5)*5});
+      }
+    }
+  }
+  function project(lat,lon,R,cx,cy){
+    const la=lat*Math.PI/180, lo=(lon+rotation)*Math.PI/180;
+    return {x:cx+R*Math.cos(la)*Math.sin(lo), y:cy-R*Math.sin(la), z:Math.cos(la)*Math.cos(lo)};
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h); rotation+=.18;
+    const cx=w*.50, cy=h*.49, R=Math.min(w,h)*.39;
+    const grad=ctx.createRadialGradient(cx-R*.28,cy-R*.32,5,cx,cy,R*1.1);
+    grad.addColorStop(0,'rgba(22,224,192,.13)'); grad.addColorStop(.55,'rgba(5,35,34,.10)'); grad.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=grad;ctx.beginPath();ctx.arc(cx,cy,R*1.08,0,Math.PI*2);ctx.fill();
+    ctx.lineWidth=1;
+    for(let lat=-60;lat<=60;lat+=30){
+      ctx.beginPath();
+      for(let i=0;i<=180;i++){const lon=-180+i*2,p=project(lat,lon,R,cx,cy);if(p.z>0){if(i===0)ctx.moveTo(p.x,p.y);else ctx.lineTo(p.x,p.y)}}
+      ctx.strokeStyle='rgba(22,224,192,.11)';ctx.stroke();
+    }
+    for(let lon=-150;lon<180;lon+=30){
+      ctx.beginPath();
+      for(let i=0;i<=140;i++){const lat=-70+i, p=project(lat,lon,R,cx,cy);if(p.z>0){if(i===0)ctx.moveTo(p.x,p.y);else ctx.lineTo(p.x,p.y)}}
+      ctx.strokeStyle='rgba(22,224,192,.09)';ctx.stroke();
+    }
+    nodes.forEach((n,i)=>{const p=project(n.lat,n.lon,R,cx,cy);if(p.z>.02){const a=.18+.55*p.z;ctx.fillStyle=`rgba(22,224,192,${a})`;ctx.beginPath();ctx.arc(p.x,p.y,1.4+1.3*p.z,0,Math.PI*2);ctx.fill();}});
+    // highlighted engineering nodes and connection arcs
+    const hubs=[[-5,-18,'MCU'],[28,48,'SENSOR'],[-24,92,'MOTOR'],[12,-108,'PCB']];
+    const hp=[];
+    hubs.forEach((n,i)=>{const p=project(n[0],n[1],R,cx,cy);hp.push(p);if(p.z>0){ctx.fillStyle=i%2?'#ff7b25':'#16e0c0';ctx.shadowBlur=16;ctx.shadowColor=ctx.fillStyle;ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.font='10px DM Mono';ctx.fillStyle='#b8c7c9';ctx.fillText(n[2],p.x+8,p.y+4);}});
+    ctx.setLineDash([5,8]);
+    for(let i=0;i<hp.length;i++)for(let j=i+1;j<hp.length;j++){if(hp[i].z>0&&hp[j].z>0){ctx.beginPath();ctx.moveTo(hp[i].x,hp[i].y);ctx.quadraticCurveTo(cx,cy-R*.18,hp[j].x,hp[j].y);ctx.strokeStyle='rgba(255,123,37,.18)';ctx.stroke();}}
+    ctx.setLineDash([]);
+    ctx.strokeStyle='rgba(22,224,192,.20)';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize); resize(); seed(); draw();
+})();
+
+/* Continuous oscilloscope: sine + square + 50 ms interrupt + 1 s tick + PCB trace background */
+(function(){
+  const canvas=document.getElementById('scopeCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  let w=0,h=0,dpr=1,start=performance.now();
+
+  function resize(){
+    const r=canvas.getBoundingClientRect();
+    dpr=Math.min(devicePixelRatio||1,2);
+    w=r.width; h=r.height;
+    canvas.width=w*dpr; canvas.height=h*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function roundedRect(x,y,ww,hh,r){
+    const rr=Math.min(r,ww/2,hh/2);
+    ctx.beginPath();
+    ctx.moveTo(x+rr,y);
+    ctx.arcTo(x+ww,y,x+ww,y+hh,rr);
+    ctx.arcTo(x+ww,y+hh,x,y+hh,rr);
+    ctx.arcTo(x,y+hh,x,y,rr);
+    ctx.arcTo(x,y,x+ww,y,rr);
+    ctx.closePath();
+  }
+
+  function drawPCBBackground(left,right,top,bottom,time){
+    // Dark PCB copper/substrate layer
+    ctx.fillStyle='rgba(2,9,9,.95)';
+    ctx.fillRect(left,top,right-left,bottom-top);
+
+    // Fine PCB grid
+    ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(22,224,192,.075)';
+    const pitch=34;
+    for(let x=left;x<=right;x+=pitch){
+      ctx.beginPath(); ctx.moveTo(x,top); ctx.lineTo(x,bottom); ctx.stroke();
+    }
+    for(let y=top;y<=bottom;y+=pitch){
+      ctx.beginPath(); ctx.moveTo(left,y); ctx.lineTo(right,y); ctx.stroke();
+    }
+
+    // PCB traces — deliberately behind the oscilloscope signals
+    const traces=[
+      [[left+25,top+42],[left+145,top+42],[left+178,top+72],[left+300,top+72]],
+      [[right-30,top+55],[right-180,top+55],[right-220,top+92],[right-340,top+92]],
+      [[left+10,bottom-55],[left+120,bottom-55],[left+154,bottom-90],[left+260,bottom-90]],
+      [[right-10,bottom-48],[right-120,bottom-48],[right-165,bottom-78],[right-300,bottom-78]],
+      [[left+w*.42,top],[left+w*.42,top+42],[left+w*.50,top+78],[left+w*.50,bottom]],
+      [[left+w*.67,bottom],[left+w*.67,bottom-42],[left+w*.74,bottom-75],[left+w*.88,bottom-75]]
+    ];
+
+    traces.forEach((pts,i)=>{
+      ctx.beginPath();
+      pts.forEach((p,j)=>{ if(j===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); });
+      ctx.strokeStyle=i%3===0?'rgba(22,224,192,.15)':'rgba(255,123,37,.10)';
+      ctx.lineWidth=1.2;
+      ctx.stroke();
+
+      pts.forEach((p,j)=>{
+        if(j===0 || j===pts.length-1){
+          ctx.fillStyle=i%3===0?'rgba(22,224,192,.34)':'rgba(255,123,37,.25)';
+          ctx.beginPath(); ctx.arc(p[0],p[1],2.3,0,Math.PI*2); ctx.fill();
+        }
+      });
+    });
+
+    // IC / connector silhouettes
+    const chips=[
+      {x:left+92,y:top+105,w:76,h:42},
+      {x:right-178,y:top+102,w:82,h:45},
+      {x:left+right*0.02,y:bottom-118,w:70,h:40},
+      {x:right-390,y:bottom-112,w:92,h:46}
+    ];
+    chips.forEach((c,i)=>{
+      ctx.fillStyle='rgba(6,18,18,.88)';
+      ctx.strokeStyle=i%2?'rgba(255,123,37,.13)':'rgba(22,224,192,.14)';
+      ctx.lineWidth=1;
+      roundedRect(c.x,c.y,c.w,c.h,5); ctx.fill(); ctx.stroke();
+      ctx.fillStyle=i%2?'rgba(255,123,37,.28)':'rgba(22,224,192,.30)';
+      for(let p=0;p<5;p++){
+        ctx.fillRect(c.x+12+p*12,c.y-4,5,4);
+        ctx.fillRect(c.x+12+p*12,c.y+c.h,5,4);
+      }
+    });
+
+    // Vias scattered around the scope
+    const seed=37;
+    for(let i=0;i<46;i++){
+      const x=left+((i*83+seed)%Math.max(1,Math.floor(right-left-12)))+6;
+      const y=top+((i*47+seed*2)%Math.max(1,Math.floor(bottom-top-12)))+6;
+      ctx.fillStyle=i%4===0?'rgba(255,123,37,.30)':'rgba(22,224,192,.24)';
+      ctx.beginPath();ctx.arc(x,y,1.7,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,.045)';
+      ctx.beginPath();ctx.arc(x,y,3.3,0,Math.PI*2);ctx.stroke();
+    }
+
+    // A slow moving "power" trace glow
+    const scanX=left+((time*55)%(right-left));
+    const scan=ctx.createLinearGradient(scanX-70,0,scanX+70,0);
+    scan.addColorStop(0,'rgba(22,224,192,0)');
+    scan.addColorStop(.5,'rgba(22,224,192,.08)');
+    scan.addColorStop(1,'rgba(22,224,192,0)');
+    ctx.fillStyle=scan;ctx.fillRect(scanX-70,top,140,bottom-top);
+  }
+
+  function draw(t){
+    const time=(t-start)/1000;
+    ctx.clearRect(0,0,w,h);
+
+    const left=24,right=w-24,top=56,bottom=h-58;
+
+    drawPCBBackground(left,right,top,bottom,time);
+
+    // Scope grid over PCB
+    const gridX=16,gridY=8;
+    ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(255,255,255,.065)';
+    for(let i=0;i<=gridX;i++){
+      const x=left+(right-left)*i/gridX;
+      ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,bottom);ctx.stroke();
+    }
+    for(let i=0;i<=gridY;i++){
+      const y=top+(bottom-top)*i/gridY;
+      ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();
+    }
+
+    // 1-second timing divisions
+    ctx.strokeStyle='rgba(255,123,37,.18)';
+    const pxPerSec=(right-left)/5;
+    for(let s=0;s<=6;s++){
+      const x=left+((s-(time%5)/5)*pxPerSec);
+      if(x>=left && x<=right){
+        ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,bottom);ctx.stroke();
+      }
+    }
+
+    // SINE / CH1
+    ctx.beginPath();
+    for(let x=left;x<=right;x++){
+      const u=(x-left)/(right-left);
+      const y=top+(bottom-top)*.30+
+        Math.sin(u*Math.PI*12-time*4.0)*(bottom-top)*.115;
+      if(x===left)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle='#16e0c0';
+    ctx.lineWidth=3;
+    ctx.shadowBlur=13;ctx.shadowColor='#16e0c0';
+    ctx.stroke();ctx.shadowBlur=0;
+
+    // SQUARE / CH2 — strong and clean
+    const squareBase=top+(bottom-top)*.76;
+    const squareHigh=top+(bottom-top)*.59;
+    const cycles=3.1;
+    ctx.beginPath();
+    let previous=squareHigh;
+    for(let x=left;x<=right;x++){
+      const u=(x-left)/(right-left);
+      const phase=((u*cycles-time*.34)%1+1)%1;
+      const y=phase<.50?squareHigh:squareBase;
+      if(x===left){ctx.moveTo(x,y);previous=y;}
+      else{
+        if(y!==previous){ctx.lineTo(x,previous);ctx.lineTo(x,y);}
+        else ctx.lineTo(x,y);
+        previous=y;
+      }
+    }
+    ctx.strokeStyle='#ff7b25';
+    ctx.lineWidth=4;
+    ctx.lineJoin='miter';
+    ctx.lineCap='square';
+    ctx.shadowBlur=15;ctx.shadowColor='#ff7b25';
+    ctx.stroke();ctx.shadowBlur=0;
+
+    // Channel labels
+    ctx.font='bold 11px DM Mono';
+    ctx.fillStyle='#16e0c0';ctx.fillText('CH1  SINE',left+10,top+19);
+    ctx.fillStyle='#ff7b25';ctx.fillText('CH2  SQUARE',left+10,squareHigh-10);
+
+    // 50 ms interrupt pulse train at bottom
+    ctx.beginPath();
+    const irqY=bottom-17, period=.05, pxPerSec2=(right-left)/2.8;
+    for(let x=left;x<=right;x++){
+      const sec=(x-left)/pxPerSec2+time;
+      const pulse=(sec%period)<.008;
+      const yy=pulse?irqY-13:irqY;
+      if(x===left)ctx.moveTo(x,yy);else ctx.lineTo(x,yy);
+    }
+    ctx.strokeStyle='rgba(130,175,170,.48)';
+    ctx.lineWidth=1.3;ctx.stroke();
+
+    // Time labels
+    ctx.font='10px DM Mono';
+    ctx.fillStyle='#6f8387';
+    ['0.00 s','0.25 s','0.50 s','0.75 s','1.00 s'].forEach((label,i)=>{
+      const x=left+(right-left)*i/4;
+      ctx.fillText(label,x+6,bottom+22);
+    });
+    ctx.fillStyle='#6f8387';
+    ctx.fillText('50 ms INTERRUPT',left+45,bottom+22);
+    ctx.fillText('1 s SYSTEM TICK',left+(right-left)*.33,bottom+22);
+    ctx.fillText('TIME/DIV  50 ms',left+(right-left)*.64,bottom+22);
+    ctx.fillText('STATUS  RUNNING',right-108,bottom+22);
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize',resize);
+  resize();
+  requestAnimationFrame(draw);
+})();
+/* Full-page animated PCB / circuit-board atmosphere */
+(function(){
+  const canvas=document.getElementById('pcbBg');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  let W=0,H=0,dpr=1,start=performance.now(),nodes=[],traces=[],chips=[],particles=[];
+  const cyan='22,224,192', orange='255,123,37';
+
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    const box=canvas.parentElement.getBoundingClientRect();
+    W=Math.max(1,box.width); H=Math.max(1,box.height);
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    canvas.style.width='100%'; canvas.style.height='100%';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    build();
+  }
+
+  function build(){
+    nodes=[]; traces=[]; chips=[]; particles=[];
+    const cols=Math.ceil(W/95)+2, rows=Math.ceil(H/78)+2;
+    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+      if((r*7+c*11)%5!==0){
+        nodes.push({x:c*95+24+((r*13)%26),y:r*78+20+((c*9)%22),hot:(r+c)%13===0});
+      }
+    }
+    // Large routed PCB traces across the page
+    for(let i=0;i<22;i++){
+      const y=35+i*(H-70)/21;
+      const x0=(i*137)%170;
+      const x1=W-((i*89)%180)-30;
+      const mid=x0+90+((i*47)%120);
+      const mid2=x1-120-((i*31)%120);
+      traces.push([
+        [x0,y], [mid,y], [mid+30,y+((i%2)?34:-34)],
+        [mid2,y+((i%3)-1)*34], [mid2+28,y], [x1,y]
+      ]);
+    }
+    for(let i=0;i<9;i++){
+      const x=70+i*(W-140)/8;
+      traces.push([[x,0],[x,70],[x+((i%2)?42:-42),105],[x+((i%2)?42:-42),H-110],[x,H-75],[x,H]]);
+    }
+    for(let i=0;i<8;i++){
+      const x=90+(i*173)%(Math.max(1,W-240));
+      const y=110+(i*97)%(Math.max(1,H-230));
+      chips.push({x,y,w:82+(i%3)*22,h:44+(i%2)*8,rot:(i%2)*0.015});
+    }
+    for(let i=0;i<55;i++) particles.push({x:Math.random()*W,y:Math.random()*H,s:12+Math.random()*28,phase:Math.random()*Math.PI*2});
+  }
+
+  function roundedRect(x,y,w,h,r){
+    ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+  }
+
+  function draw(t){
+    const time=(t-start)/1000;
+    ctx.clearRect(0,0,W,H);
+    // PCB grid
+    ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(22,224,192,.075)';
+    for(let x=0;x<W;x+=48){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=48){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+    // Routed copper traces
+    traces.forEach((pts,i)=>{
+      ctx.beginPath(); pts.forEach((p,j)=>j?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));
+      ctx.strokeStyle=i%4===0?`rgba(${orange},.18)`:`rgba(${cyan},.16)`;
+      ctx.lineWidth=i%5===0?1.5:1;
+      ctx.stroke();
+      const p=pts[pts.length-1];
+      ctx.fillStyle=i%4===0?`rgba(${orange},.34)`:`rgba(${cyan},.30)`;
+      ctx.beginPath();ctx.arc(p[0],p[1],3,0,Math.PI*2);ctx.fill();
+    });
+
+    // IC footprints / packages
+    chips.forEach((c,i)=>{
+      ctx.save();ctx.translate(c.x,c.y);ctx.rotate(c.rot);
+      ctx.fillStyle='rgba(4,14,15,.82)';
+      ctx.strokeStyle=i%2?`rgba(${orange},.24)`:`rgba(${cyan},.22)`;
+      roundedRect(0,0,c.w,c.h,5);ctx.fill();ctx.stroke();
+      ctx.fillStyle=i%2?`rgba(${orange},.34)`:`rgba(${cyan},.30)`;
+      for(let p=0;p<5;p++){
+        ctx.fillRect(10+p*14,-5,6,5);ctx.fillRect(10+p*14,c.h,6,5);
+      }
+      ctx.fillStyle='rgba(150,180,180,.10)';ctx.fillRect(c.w*.2,c.h*.32,c.w*.55,2);
+      ctx.fillRect(c.w*.2,c.h*.50,c.w*.35,2);
+      ctx.restore();
+    });
+
+    // Vias / test points
+    nodes.forEach((n,i)=>{
+      ctx.fillStyle=n.hot?`rgba(${orange},.55)`:`rgba(${cyan},.40)`;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.hot?2.5:1.7,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,.045)';ctx.beginPath();ctx.arc(n.x,n.y,4,0,Math.PI*2);ctx.stroke();
+    });
+
+    // Animated electrons travelling along horizontal PCB traces
+    for(let i=0;i<12;i++){
+      const pts=traces[(i*3)%traces.length];
+      const phase=((time*(0.10+i*.012)+i*.17)%1);
+      const idx=Math.floor(phase*(pts.length-1));
+      const a=pts[idx],b=pts[Math.min(idx+1,pts.length-1)],f=(phase*(pts.length-1))%1;
+      const x=a[0]+(b[0]-a[0])*f, y=a[1]+(b[1]-a[1])*f;
+      ctx.fillStyle=i%3===0?`rgba(${orange},.75)`:`rgba(${cyan},.75)`;
+      ctx.shadowBlur=13;ctx.shadowColor=i%3===0?'#ff7b25':'#16e0c0';
+      ctx.beginPath();ctx.arc(x,y,2.4,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    }
+
+    // Subtle moving scan light
+    const sx=(time*42)%(W+220)-110;
+    const g=ctx.createLinearGradient(sx-90,0,sx+90,0);
+    g.addColorStop(0,'rgba(22,224,192,0)');g.addColorStop(.5,'rgba(22,224,192,.045)');g.addColorStop(1,'rgba(22,224,192,0)');
+    ctx.fillStyle=g;ctx.fillRect(sx-90,0,180,H);
+
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize,{passive:true});
+  if(window.ResizeObserver) new ResizeObserver(resize).observe(canvas.parentElement);
+  resize(); requestAnimationFrame(draw);
+})();
+
 const progress = document.getElementById("progress");
+
 window.addEventListener("scroll", () => {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  progress.style.width = (scrollTop / height * 100) + "%";
+  progress.style.width = (height > 0 ? scrollTop / height * 100 : 0) + "%";
 });
 
 const observer = new IntersectionObserver((entries)=>{
@@ -482,5 +1233,194 @@ const observer = new IntersectionObserver((entries)=>{
 
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>
+<script>
+
+/* Animated PCB traces + electrons across the entire black background */
+(()=>{
+ const c=document.getElementById('pcbFlowCanvas'),ctx=c.getContext('2d');
+ let W=0,H=0,dpr=1,t=0, paths=[], chips=[], electrons=[];
+ const cyan='rgba(22,224,192,', orange='rgba(255,123,37,';
+ function resize(){
+   dpr=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
+   c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';
+   ctx.setTransform(dpr,0,0,dpr,0,0); build();
+ }
+ function build(){
+   paths=[];chips=[];electrons=[];
+   const rand=(a,b)=>a+Math.random()*(b-a);
+   // distributed but sparse: long PCB-style orthogonal routes
+   for(let i=0;i<30;i++){
+     const y=rand(70,H-70), x=rand(-80,W*.72), len=rand(220,620);
+     const step=rand(35,95), rise=(Math.random()<.5?-1:1)*rand(45,150);
+     const pts=[[x,y]]; let px=x,py=y;
+     pts.push([px+step,py]); px+=step;
+     pts.push([px,py+rise]); py+=rise;
+     pts.push([Math.min(W+100,px+len),py]);
+     if(Math.random()<.7){ pts.push([pts.at(-1)[0], py+(Math.random()<.5?-1:1)*rand(30,90)]); }
+     paths.push({pts,col:Math.random()<.82?cyan:orange,w:Math.random()<.8?1.2:1.7,alpha:rand(.16,.34)});
+     // 2-4 electrons per route
+     for(let e=0;e<Math.floor(rand(1,4));e++) electrons.push({path:paths.length-1,u:Math.random(),speed:rand(.0007,.0018)});
+   }
+   // circuit nodes / vias
+   for(let i=0;i<75;i++){
+     chips.push({x:rand(25,W-25),y:rand(55,H-55),type:Math.random()<.18?'ic':'via',r:Math.random()<.7?3:5,col:Math.random()<.84?cyan:orange});
+   }
+   // a few IC footprints with pins
+   for(let i=0;i<8;i++) chips.push({x:rand(50,W-150),y:rand(100,H-130),type:'ic',w:rand(42,72),h:rand(22,38),col:cyan});
+ }
+ function pointOnPath(p,u){
+   const pts=p.pts; let total=0, seg=[];
+   for(let i=1;i<pts.length;i++){const dx=pts[i][0]-pts[i-1][0],dy=pts[i][1]-pts[i-1][1],d=Math.hypot(dx,dy);seg.push(d);total+=d}
+   let target=(u%1)*total,acc=0;
+   for(let i=0;i<seg.length;i++){if(acc+seg[i]>=target){const q=(target-acc)/seg[i];return [pts[i][0]+(pts[i+1][0]-pts[i][0])*q,pts[i][1]+(pts[i+1][1]-pts[i][1])*q]}acc+=seg[i]}
+   return pts.at(-1);
+ }
+ function drawPath(p){
+   ctx.beginPath();ctx.moveTo(p.pts[0][0],p.pts[0][1]);
+   for(let i=1;i<p.pts.length;i++)ctx.lineTo(p.pts[i][0],p.pts[i][1]);
+   ctx.strokeStyle=p.col+p.alpha+')';ctx.lineWidth=p.w;ctx.stroke();
+   // brighter pads at route corners
+   for(let i=1;i<p.pts.length-1;i++){
+     const [x,y]=p.pts[i];ctx.beginPath();ctx.arc(x,y,2.2,0,Math.PI*2);ctx.fillStyle=p.col+'.55)';ctx.fill();
+   }
+ }
+ function loop(){
+   ctx.clearRect(0,0,W,H);
+   // subtle PCB zones so it is visible but never grey
+   const grad=ctx.createRadialGradient(W*.78,H*.2,10,W*.78,H*.2,Math.min(W,H)*.55);
+   grad.addColorStop(0,'rgba(22,224,192,.045)');grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+   paths.forEach(drawPath);
+   chips.forEach(o=>{
+     if(o.type==='via'){
+       ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.strokeStyle=o.col+'.34)';ctx.lineWidth=1;ctx.stroke();
+       ctx.beginPath();ctx.arc(o.x,o.y,1.2,0,Math.PI*2);ctx.fillStyle=o.col+'.55)';ctx.fill();
+     } else {
+       ctx.strokeStyle=o.col+'.25)';ctx.lineWidth=1;ctx.strokeRect(o.x,o.y,o.w,o.h);
+       for(let px=o.x+7;px<o.x+o.w-2;px+=10){
+         ctx.fillStyle=o.col+'.28)';ctx.fillRect(px,o.y-4,4,3);ctx.fillRect(px,o.y+o.h+1,4,3);
+       }
+     }
+   });
+   electrons.forEach(e=>{
+     e.u+=e.speed;if(e.u>1)e.u=0;
+     const p=pointOnPath(paths[e.path],e.u); const col=paths[e.path].col;
+     ctx.shadowBlur=12;ctx.shadowColor=col+'1)';ctx.fillStyle=col+'.95)';ctx.beginPath();ctx.arc(p[0],p[1],2.7,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+   });
+   // occasional scanning pulse travelling diagonally
+   const sx=(t*.08)%(W+250)-250;
+   const beam=ctx.createLinearGradient(sx,0,sx+130,0);beam.addColorStop(0,'rgba(22,224,192,0)');beam.addColorStop(.5,'rgba(22,224,192,.045)');beam.addColorStop(1,'rgba(22,224,192,0)');ctx.fillStyle=beam;ctx.fillRect(sx,0,130,H);
+   t++;requestAnimationFrame(loop);
+ }
+ addEventListener('resize',resize,{passive:true});resize();loop();
+})();
+
+</script>
+
+<style id="pcb-cursor-style">
+  body, a, button { cursor: none !important; }
+
+  #pcbCursor {
+    position: fixed;
+    left: 0; top: 0;
+    width: 34px; height: 34px;
+    z-index: 99999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width .16s ease, height .16s ease, opacity .2s ease;
+  }
+  #pcbCursor .ring {
+    position:absolute; inset:0;
+    border:1px solid rgba(22,224,192,.8);
+    border-radius:50%;
+    box-shadow:0 0 12px rgba(22,224,192,.35), inset 0 0 8px rgba(22,224,192,.12);
+  }
+  #pcbCursor .via {
+    position:absolute;
+    width:11px;height:11px;
+    left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    border:2px solid #16e0c0;
+    border-radius:50%;
+    background:#050708;
+    box-shadow:0 0 10px rgba(22,224,192,.9);
+  }
+  #pcbCursor .via:after {
+    content:"";
+    position:absolute;
+    width:3px;height:3px;
+    border-radius:50%;
+    left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    background:#ff7b25;
+  }
+  #pcbCursor .trace-x,
+  #pcbCursor .trace-y {
+    position:absolute;
+    background:rgba(22,224,192,.72);
+  }
+  #pcbCursor .trace-x { width:58px;height:1px;left:-12px;top:50%; }
+  #pcbCursor .trace-y { width:1px;height:58px;left:50%;top:-12px; }
+  #pcbCursor .label {
+    position:absolute;
+    left:25px; top:20px;
+    color:#8fa8aa;
+    font:10px "DM Mono", monospace;
+    letter-spacing:1px;
+    white-space:nowrap;
+    opacity:.9;
+  }
+  #pcbCursor.hover .ring {
+    border-color:#ff7b25;
+    box-shadow:0 0 16px rgba(255,123,37,.45);
+  }
+  #pcbCursor.hover .via { border-color:#ff7b25; }
+  #pcbCursor.hover .label { color:#ff9a58; }
+
+  @media (max-width: 900px) {
+    #pcbCursor { display:none; }
+    body, a, button { cursor:auto !important; }
+  }
+</style>
+
+<div id="pcbCursor" aria-hidden="true">
+  <div class="ring"></div>
+  <div class="trace-x"></div>
+  <div class="trace-y"></div>
+  <div class="via"></div>
+  <div class="label">PCB_VIA</div>
+</div>
+
+<script id="pcb-cursor-script">
+(() => {
+  const cursor = document.getElementById("pcbCursor");
+  if (!cursor) return;
+
+  let x = innerWidth / 2, y = innerHeight / 2;
+  let tx = x, ty = y;
+
+  addEventListener("mousemove", e => {
+    tx = e.clientX;
+    ty = e.clientY;
+    cursor.style.opacity = "1";
+  });
+
+  addEventListener("mouseleave", () => cursor.style.opacity = "0");
+
+  document.querySelectorAll("a, button, .card, .skill, .blog").forEach(el => {
+    el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+    el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+  });
+
+  function animate() {
+    x += (tx - x) * .22;
+    y += (ty - y) * .22;
+    cursor.style.left = x + "px";
+    cursor.style.top = y + "px";
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
 </body>
 </html>
