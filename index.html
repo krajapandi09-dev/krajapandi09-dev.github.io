@@ -1316,88 +1316,123 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 </script>
 
+
 <style id="pcb-cursor-style">
-html, body, body * { cursor: none !important; }
+  /* Creative PCB cursor — desktop only */
+  @media (min-width: 901px) {
+    body, body a, body button { cursor: none !important; }
 
-#pcbCursor{
-  position:fixed;
-  left:0; top:0;
-  width:28px; height:28px;
-  z-index:2147483647;
-  pointer-events:none !important;
-  opacity:0;
-  transform:translate3d(-50%,-50%,0);
-  will-change:left,top,transform;
-  transition:opacity .15s ease;
-}
-#pcbCursor .ring{
-  position:absolute; inset:0;
-  border:1.5px solid #16e0c0;
-  border-radius:50%;
-  box-shadow:0 0 9px rgba(22,224,192,.55), inset 0 0 7px rgba(22,224,192,.12);
-}
-#pcbCursor .via{
-  position:absolute;
-  left:50%; top:50%;
-  width:9px; height:9px;
-  transform:translate(-50%,-50%);
-  border:2px solid #16e0c0;
-  border-radius:50%;
-  background:#000;
-  box-shadow:0 0 9px rgba(22,224,192,.9);
-}
-#pcbCursor .via:after{
-  content:"";
-  position:absolute;
-  width:3px; height:3px;
-  left:50%; top:50%;
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  background:#ff7b25;
-  box-shadow:0 0 5px #ff7b25;
-}
-#pcbCursor .trace-x,
-#pcbCursor .trace-y{
-  position:absolute;
-  background:#16e0c0;
-  opacity:.85;
-}
-#pcbCursor .trace-x{width:52px;height:1px;left:-12px;top:50%}
-#pcbCursor .trace-y{width:1px;height:52px;left:50%;top:-12px}
-#pcbCursor .label{
-  position:absolute;
-  left:21px; top:18px;
-  color:#8fa8aa;
-  font:9px "DM Mono",monospace;
-  letter-spacing:1px;
-  white-space:nowrap;
-  text-shadow:0 0 8px #000;
-}
-#pcbCursor.hover .ring{
-  border-color:#ff7b25;
-  box-shadow:0 0 15px rgba(255,123,37,.7);
-}
-#pcbCursor.hover .via{
-  border-color:#ff7b25;
-  box-shadow:0 0 13px rgba(255,123,37,.9);
-}
-#pcbCursor.hover .trace-x,
-#pcbCursor.hover .trace-y{background:#ff7b25}
-#pcbCursor.hover .label{color:#ff9a58}
+    #pcbCursor {
+      position: fixed !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 34px !important;
+      height: 34px !important;
+      z-index: 2147483647 !important;
+      display: block !important;
+      opacity: 1 !important;
+      pointer-events: none !important;
+      transform: translate3d(-50%, -50%, 0) !important;
+      will-change: transform;
+    }
 
-@media (max-width:900px){
-  html,body,body *{cursor:auto !important}
-  #pcbCursor{display:none !important}
-}
+    #pcbCursor .cursor-ring {
+      position: absolute;
+      inset: 0;
+      border: 1.5px solid #16e0c0;
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(22,224,192,.65);
+    }
+
+    #pcbCursor .cursor-via {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      transform: translate(-50%,-50%);
+      border: 2px solid #16e0c0;
+      border-radius: 50%;
+      background: #000;
+      box-shadow: 0 0 12px rgba(22,224,192,.95);
+    }
+
+    #pcbCursor .cursor-via::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      background: #ff7b25;
+      box-shadow: 0 0 7px #ff7b25;
+    }
+
+    #pcbCursor .cursor-trace-h,
+    #pcbCursor .cursor-trace-v {
+      position: absolute;
+      display: block;
+      background: #16e0c0;
+      box-shadow: 0 0 5px rgba(22,224,192,.65);
+    }
+
+    #pcbCursor .cursor-trace-h {
+      width: 60px;
+      height: 1px;
+      left: -13px;
+      top: 50%;
+    }
+
+    #pcbCursor .cursor-trace-v {
+      width: 1px;
+      height: 60px;
+      left: 50%;
+      top: -13px;
+    }
+
+    #pcbCursor .cursor-label {
+      position: absolute;
+      left: 25px;
+      top: 20px;
+      color: #8fa8aa;
+      font: 9px/1 "DM Mono", monospace;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      text-shadow: 0 1px 5px #000, 0 0 8px #000;
+    }
+
+    #pcbCursor.cursor-hover .cursor-ring {
+      border-color: #ff7b25;
+      box-shadow: 0 0 18px rgba(255,123,37,.8);
+    }
+
+    #pcbCursor.cursor-hover .cursor-via {
+      border-color: #ff7b25;
+      box-shadow: 0 0 16px rgba(255,123,37,1);
+    }
+
+    #pcbCursor.cursor-hover .cursor-trace-h,
+    #pcbCursor.cursor-hover .cursor-trace-v {
+      background: #ff7b25;
+      box-shadow: 0 0 7px rgba(255,123,37,.8);
+    }
+
+    #pcbCursor.cursor-hover .cursor-label { color: #ff9a58; }
+  }
+
+  @media (max-width: 900px) {
+    #pcbCursor { display: none !important; }
+  }
 </style>
 
 <div id="pcbCursor" aria-hidden="true">
-  <div class="ring"></div>
-  <div class="trace-x"></div>
-  <div class="trace-y"></div>
-  <div class="via"></div>
-  <div class="label">PCB_VIA</div>
-</div>
+  <span class="cursor-ring"></span>
+  <span class="cursor-trace-h"></span>
+  <span class="cursor-trace-v"></span>
+  <span class="cursor-via"></span>
+  <span class="cursor-label">PCB_VIA</span>
 </div>
 
 <script id="pcb-cursor-script">
@@ -1405,45 +1440,38 @@ html, body, body * { cursor: none !important; }
   const cursor = document.getElementById("pcbCursor");
   if (!cursor || window.matchMedia("(max-width: 900px)").matches) return;
 
-  let targetX = innerWidth / 2, targetY = innerHeight / 2;
-  let currentX = targetX, currentY = targetY;
-  let visible = false;
+  let x = window.innerWidth / 2;
+  let y = window.innerHeight / 2;
+  let targetX = x;
+  let targetY = y;
 
-  const move = e => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-    if (!visible) {
-      currentX = targetX;
-      currentY = targetY;
-      visible = true;
-      cursor.style.opacity = "1";
+  document.addEventListener("pointermove", (event) => {
+    targetX = event.clientX;
+    targetY = event.clientY;
+  }, { passive: true });
+
+  document.addEventListener("pointerover", (event) => {
+    const target = event.target;
+    if (target && target.closest && target.closest("a, button, .btn, .card, .skill, .blog")) {
+      cursor.classList.add("cursor-hover");
+    } else {
+      cursor.classList.remove("cursor-hover");
     }
-  };
+  }, { passive: true });
 
-  const hide = () => {
-    visible = false;
-    cursor.style.opacity = "0";
-  };
-
-  document.addEventListener("mousemove", move, {passive:true});
-  document.addEventListener("mouseleave", hide, {passive:true});
-  document.addEventListener("mouseenter", () => cursor.style.opacity = "1", {passive:true});
-
-  document.addEventListener("mouseover", e => {
-    const interactive = e.target.closest("a,button,.card,.skill,.blog,.btn");
-    cursor.classList.toggle("hover", !!interactive);
-  }, {passive:true});
-
-  function tick(){
-    currentX += (targetX-currentX)*0.28;
-    currentY += (targetY-currentY)*0.28;
-    cursor.style.left = currentX + "px";
-    cursor.style.top = currentY + "px";
-    requestAnimationFrame(tick);
+  function render() {
+    x += (targetX - x) * 0.32;
+    y += (targetY - y) * 0.32;
+    cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate3d(-50%, -50%, 0)`;
+    requestAnimationFrame(render);
   }
-  tick();
+
+  /* Force the cursor visible immediately; it no longer depends on mouse-enter/leave events. */
+  cursor.style.opacity = "1";
+  render();
 })();
 </script>
+
 
 </body>
 </html>
