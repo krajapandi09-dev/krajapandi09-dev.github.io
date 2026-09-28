@@ -1317,69 +1317,78 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>
 
 <style id="pcb-cursor-style">
-  body, a, button { cursor: none !important; }
+html, body, body * { cursor: none !important; }
 
-  #pcbCursor {
-    position: fixed;
-    left: 0; top: 0;
-    width: 34px; height: 34px;
-    z-index: 99999;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: width .16s ease, height .16s ease, opacity .2s ease;
-  }
-  #pcbCursor .ring {
-    position:absolute; inset:0;
-    border:1px solid rgba(22,224,192,.8);
-    border-radius:50%;
-    box-shadow:0 0 12px rgba(22,224,192,.35), inset 0 0 8px rgba(22,224,192,.12);
-  }
-  #pcbCursor .via {
-    position:absolute;
-    width:11px;height:11px;
-    left:50%;top:50%;
-    transform:translate(-50%,-50%);
-    border:2px solid #16e0c0;
-    border-radius:50%;
-    background:#050708;
-    box-shadow:0 0 10px rgba(22,224,192,.9);
-  }
-  #pcbCursor .via:after {
-    content:"";
-    position:absolute;
-    width:3px;height:3px;
-    border-radius:50%;
-    left:50%;top:50%;
-    transform:translate(-50%,-50%);
-    background:#ff7b25;
-  }
-  #pcbCursor .trace-x,
-  #pcbCursor .trace-y {
-    position:absolute;
-    background:rgba(22,224,192,.72);
-  }
-  #pcbCursor .trace-x { width:58px;height:1px;left:-12px;top:50%; }
-  #pcbCursor .trace-y { width:1px;height:58px;left:50%;top:-12px; }
-  #pcbCursor .label {
-    position:absolute;
-    left:25px; top:20px;
-    color:#8fa8aa;
-    font:10px "DM Mono", monospace;
-    letter-spacing:1px;
-    white-space:nowrap;
-    opacity:.9;
-  }
-  #pcbCursor.hover .ring {
-    border-color:#ff7b25;
-    box-shadow:0 0 16px rgba(255,123,37,.45);
-  }
-  #pcbCursor.hover .via { border-color:#ff7b25; }
-  #pcbCursor.hover .label { color:#ff9a58; }
+#pcbCursor{
+  position:fixed;
+  left:0; top:0;
+  width:28px; height:28px;
+  z-index:2147483647;
+  pointer-events:none !important;
+  opacity:0;
+  transform:translate3d(-50%,-50%,0);
+  will-change:left,top,transform;
+  transition:opacity .15s ease;
+}
+#pcbCursor .ring{
+  position:absolute; inset:0;
+  border:1.5px solid #16e0c0;
+  border-radius:50%;
+  box-shadow:0 0 9px rgba(22,224,192,.55), inset 0 0 7px rgba(22,224,192,.12);
+}
+#pcbCursor .via{
+  position:absolute;
+  left:50%; top:50%;
+  width:9px; height:9px;
+  transform:translate(-50%,-50%);
+  border:2px solid #16e0c0;
+  border-radius:50%;
+  background:#000;
+  box-shadow:0 0 9px rgba(22,224,192,.9);
+}
+#pcbCursor .via:after{
+  content:"";
+  position:absolute;
+  width:3px; height:3px;
+  left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#ff7b25;
+  box-shadow:0 0 5px #ff7b25;
+}
+#pcbCursor .trace-x,
+#pcbCursor .trace-y{
+  position:absolute;
+  background:#16e0c0;
+  opacity:.85;
+}
+#pcbCursor .trace-x{width:52px;height:1px;left:-12px;top:50%}
+#pcbCursor .trace-y{width:1px;height:52px;left:50%;top:-12px}
+#pcbCursor .label{
+  position:absolute;
+  left:21px; top:18px;
+  color:#8fa8aa;
+  font:9px "DM Mono",monospace;
+  letter-spacing:1px;
+  white-space:nowrap;
+  text-shadow:0 0 8px #000;
+}
+#pcbCursor.hover .ring{
+  border-color:#ff7b25;
+  box-shadow:0 0 15px rgba(255,123,37,.7);
+}
+#pcbCursor.hover .via{
+  border-color:#ff7b25;
+  box-shadow:0 0 13px rgba(255,123,37,.9);
+}
+#pcbCursor.hover .trace-x,
+#pcbCursor.hover .trace-y{background:#ff7b25}
+#pcbCursor.hover .label{color:#ff9a58}
 
-  @media (max-width: 900px) {
-    #pcbCursor { display:none; }
-    body, a, button { cursor:auto !important; }
-  }
+@media (max-width:900px){
+  html,body,body *{cursor:auto !important}
+  #pcbCursor{display:none !important}
+}
 </style>
 
 <div id="pcbCursor" aria-hidden="true">
@@ -1389,36 +1398,50 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   <div class="via"></div>
   <div class="label">PCB_VIA</div>
 </div>
+</div>
 
 <script id="pcb-cursor-script">
 (() => {
   const cursor = document.getElementById("pcbCursor");
-  if (!cursor) return;
+  if (!cursor || window.matchMedia("(max-width: 900px)").matches) return;
 
-  let x = innerWidth / 2, y = innerHeight / 2;
-  let tx = x, ty = y;
+  let targetX = innerWidth / 2, targetY = innerHeight / 2;
+  let currentX = targetX, currentY = targetY;
+  let visible = false;
 
-  addEventListener("mousemove", e => {
-    tx = e.clientX;
-    ty = e.clientY;
-    cursor.style.opacity = "1";
-  });
+  const move = e => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    if (!visible) {
+      currentX = targetX;
+      currentY = targetY;
+      visible = true;
+      cursor.style.opacity = "1";
+    }
+  };
 
-  addEventListener("mouseleave", () => cursor.style.opacity = "0");
+  const hide = () => {
+    visible = false;
+    cursor.style.opacity = "0";
+  };
 
-  document.querySelectorAll("a, button, .card, .skill, .blog").forEach(el => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
-    el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
-  });
+  document.addEventListener("mousemove", move, {passive:true});
+  document.addEventListener("mouseleave", hide, {passive:true});
+  document.addEventListener("mouseenter", () => cursor.style.opacity = "1", {passive:true});
 
-  function animate() {
-    x += (tx - x) * .22;
-    y += (ty - y) * .22;
-    cursor.style.left = x + "px";
-    cursor.style.top = y + "px";
-    requestAnimationFrame(animate);
+  document.addEventListener("mouseover", e => {
+    const interactive = e.target.closest("a,button,.card,.skill,.blog,.btn");
+    cursor.classList.toggle("hover", !!interactive);
+  }, {passive:true});
+
+  function tick(){
+    currentX += (targetX-currentX)*0.28;
+    currentY += (targetY-currentY)*0.28;
+    cursor.style.left = currentX + "px";
+    cursor.style.top = currentY + "px";
+    requestAnimationFrame(tick);
   }
-  animate();
+  tick();
 })();
 </script>
 
