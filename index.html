@@ -3,775 +3,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raja Pandi | Embedded Systems Engineer</title>
-<meta name="description" content="Raja Pandi — Embedded Systems Engineer working across hardware, PCB design, firmware, prototyping, sensors, motor control and product development.">
+<meta name="description" content="Raja Pandi K — Embedded Systems Engineer working across firmware, hardware, PCB design and prototypes.">
+<title>Raja Pandi K | Embedded Systems Engineer</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#050708;
-  --surface:#0a0f11;
-  --surface-2:#0d1416;
-  --text:#edf3f4;
-  --muted:#91a0a5;
-  --line:#1a292d;
-  --teal:#20e6bd;
-  --teal-dim:#0f8f78;
-  --orange:#ff7518;
-  --yellow:#ffd166;
-  --mono:"JetBrains Mono",monospace;
-  --display:"Space Grotesk",sans-serif;
-  --body:"Inter",sans-serif;
+  --panel:#0a0e10;
+  --text:#edf4f4;
+  --muted:#8c9a9d;
+  --line:#1d2a2d;
+  --cyan:#16e0c0;
+  --orange:#ff7b25;
+  --max:1200px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:
-    radial-gradient(circle at 82% 5%,rgba(255,117,24,.075),transparent 24rem),
-    radial-gradient(circle at 12% 22%,rgba(32,230,189,.055),transparent 25rem),
-    var(--bg);
-  color:var(--text);
-  font-family:var(--body);
-  overflow-x:hidden;
+  margin:0;background:
+  radial-gradient(circle at 85% 10%,rgba(255,123,37,.08),transparent 28%),
+  radial-gradient(circle at 10% 30%,rgba(22,224,192,.07),transparent 25%),
+  var(--bg);color:var(--text);
+  font-family:Inter,system-ui,sans-serif;line-height:1.6;
 }
-body:before{
-  content:"";
-  position:fixed;inset:0;pointer-events:none;opacity:.22;
-  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:44px 44px;
-}
-a{text-decoration:none;color:inherit}
-.container{width:min(1160px,calc(100% - 36px));margin:auto}
-
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 48px));margin:auto}
 nav{
-  position:sticky;top:0;z-index:100;
-  height:78px;
-  border-bottom:1px solid var(--line);
-  background:rgba(5,7,8,.82);
-  backdrop-filter:blur(18px);
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(16px);
+  background:rgba(5,7,8,.78);
+  border-bottom:1px solid rgba(255,255,255,.06)
 }
-.nav{
-  height:100%;display:flex;align-items:center;justify-content:space-between;
-}
-.logo{
-  font-family:var(--mono);font-weight:700;letter-spacing:-.04em;font-size:19px;
-}
-.logo .a{color:var(--teal)}
-.logo .b{color:var(--orange)}
-.logo .slash{color:#526268;margin:0 6px}
-.navlinks{
-  display:flex;gap:26px;color:#9ba9ad;
-  font:500 12px var(--mono);letter-spacing:.04em;
-}
-.navlinks a{transition:.2s}
-.navlinks a:hover{color:var(--teal)}
-.navbtn{
-  border:1px solid #23514a;color:var(--teal);
-  border-radius:7px;padding:10px 15px;font:600 11px var(--mono);
-  transition:.2s;
-}
-.navbtn:hover{background:var(--teal);color:#03100d}
-
-.hero{
-  min-height:calc(100vh - 78px);
-  display:flex;align-items:center;
-  padding:95px 0 90px;
-  position:relative;
-}
-.hero-grid{
-  display:grid;grid-template-columns:1.25fr .75fr;gap:65px;align-items:center;
-}
-.eyebrow{
-  display:flex;align-items:center;gap:10px;
-  color:var(--teal);font:700 12px var(--mono);letter-spacing:.18em;
-}
-.eyebrow i{
-  width:8px;height:8px;border-radius:2px;background:var(--teal);
-  box-shadow:0 0 18px rgba(32,230,189,.7);
-}
-h1{
-  font:700 clamp(48px,6.2vw,82px)/.98 var(--display);
-  letter-spacing:-.065em;margin:23px 0 25px;
-  max-width:850px;
-}
-h1 .teal{color:var(--teal)}
-h1 .orange{color:var(--orange)}
-.hero-copy{
-  color:var(--muted);font-size:18px;line-height:1.8;
-  max-width:710px;
-}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:31px}
+.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"DM Mono";font-weight:500;letter-spacing:-1px;font-size:20px}
+.logo span{color:var(--orange)}
+.navlinks{display:flex;gap:28px;color:#aeb9bb;font-size:14px}
+.navlinks a:hover{color:var(--cyan)}
 .btn{
   display:inline-flex;align-items:center;gap:9px;
-  padding:13px 18px;border-radius:7px;
-  font:700 11px var(--mono);letter-spacing:.02em;
-  border:1px solid var(--teal);background:var(--teal);color:#03100d;
-  transition:.22s;
+  border:1px solid var(--line);padding:11px 17px;border-radius:999px;
+  font-size:14px;font-weight:600;transition:.25s
 }
-.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(32,230,189,.15)}
-.btn.outline{background:transparent;color:var(--teal)}
-.btn.outline:hover{background:rgba(32,230,189,.08)}
-
-.hero-card{
-  border:1px solid var(--line);border-radius:15px;
-  background:linear-gradient(145deg,rgba(13,20,22,.94),rgba(7,11,12,.88));
-  box-shadow:0 30px 80px rgba(0,0,0,.38);
-  overflow:hidden;
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.btn.primary{background:var(--cyan);color:#03100e;border-color:var(--cyan)}
+section{padding:110px 0}
+.eyebrow{font:500 12px "DM Mono";letter-spacing:2px;text-transform:uppercase;color:var(--cyan)}
+.hero{min-height:calc(100vh - 72px);display:flex;align-items:center;padding:70px 0 100px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:center}
+h1{
+  font-size:clamp(62px,8.6vw,124px);line-height:.87;
+  letter-spacing:-7px;margin:22px 0 35px;font-weight:800
 }
-.windowbar{height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 15px;gap:7px}
-.dot{width:8px;height:8px;border-radius:50%;background:#324246}
-.filename{margin-left:auto;color:#59696d;font:10px var(--mono)}
-.terminal{padding:24px 22px 27px;font:12px/2 var(--mono);color:#8fa0a5}
-.terminal .prompt{color:var(--teal)}
-.terminal .value{color:#e0e9eb}
-.terminal .orange{color:var(--orange)}
-.terminal .comment{color:#52666c}
-.cursor{display:inline-block;width:7px;height:14px;background:var(--teal);vertical-align:-2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-
-section{padding:105px 0;border-top:1px solid rgba(26,41,45,.72)}
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:38px}
-.section-no{color:var(--orange);font:600 11px var(--mono);letter-spacing:.1em}
-h2{
-  font:600 clamp(34px,4vw,52px)/1.05 var(--display);
-  letter-spacing:-.055em;margin:8px 0 0;
+h1 .cyan{color:var(--cyan)} h1 .orange{color:var(--orange)}
+.lead{max-width:760px;color:var(--muted);font-size:18px;line-height:1.85}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.profile-wrap{position:relative;display:flex;justify-content:center}
+.profile{
+  width:min(360px,75vw);aspect-ratio:4/5;object-fit:cover;
+  border-radius:180px 180px 24px 24px;
+  border:1px solid #294044;
+  filter:saturate(.9);
+  box-shadow:0 0 0 12px rgba(22,224,192,.025),0 30px 100px rgba(0,0,0,.55);
+  animation:float 5s ease-in-out infinite
 }
-.section-intro{max-width:460px;color:var(--muted);line-height:1.75;font-size:14px}
-
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.panel{
-  border:1px solid var(--line);border-radius:13px;
-  padding:29px;background:linear-gradient(145deg,var(--surface),#080c0e);
+.profile-tag{
+  position:absolute;bottom:28px;left:4%;
+  background:rgba(7,11,12,.9);border:1px solid var(--line);
+  padding:14px 17px;border-radius:14px;backdrop-filter:blur(10px)
 }
-.panel h3{font:600 20px var(--display);margin:0 0 12px}
-.panel p{color:var(--muted);line-height:1.8;margin:0;font-size:14px}
-.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.stat{border-top:1px solid #244044;padding-top:13px}
-.stat b{display:block;color:var(--teal);font:700 21px var(--mono)}
-.stat span{color:#68797e;font:10px var(--mono)}
-
-.skillgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.skill{
-  padding:21px;border:1px solid var(--line);border-radius:10px;
-  background:rgba(10,15,17,.7);transition:.22s;
+.profile-tag strong{display:block;font-size:18px}.profile-tag small{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:25px 18px}.stat+ .stat{border-left:1px solid var(--line)}
+.stat b{font-size:30px}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
+h2{font-size:clamp(38px,5vw,68px);line-height:.95;letter-spacing:-3px;margin:12px 0}
+.section-copy{max-width:520px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:linear-gradient(145deg,#0a1011,#080b0c);
+  border:1px solid var(--line);border-radius:20px;padding:27px;
+  min-height:250px;transition:.3s
 }
-.skill:hover{border-color:#2a625a;transform:translateY(-3px)}
-.skill-icon{font:700 11px var(--mono);color:var(--orange);margin-bottom:13px}
-.skill h3{font:600 17px var(--display);margin:0 0 8px}
-.skill p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
-
-.projectgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
-.project{
-  position:relative;min-height:255px;padding:28px;
-  border:1px solid var(--line);border-radius:13px;
-  background:linear-gradient(145deg,#0b1113,#070b0d);
-  overflow:hidden;transition:.25s;
+.card:hover{transform:translateY(-7px);border-color:#28575b;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.card .num{font:12px "DM Mono";color:var(--orange)}
+.card h3{font-size:24px;margin:45px 0 12px}
+.card p{color:var(--muted);font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{font:11px "DM Mono";border:1px solid var(--line);padding:6px 9px;border-radius:999px;color:#aab8ba}
+.work-photo{
+  position:relative;overflow:hidden;border-radius:26px;border:1px solid var(--line);
+  min-height:560px;margin:30px 0
 }
-.project:after{
-  content:"";position:absolute;right:-70px;bottom:-100px;width:190px;height:190px;
-  border:1px solid rgba(32,230,189,.07);border-radius:50%;
-}
-.project:hover{transform:translateY(-4px);border-color:#28554f}
-.project-no{font:600 10px var(--mono);color:var(--orange);letter-spacing:.14em}
-.project h3{font:600 24px var(--display);margin:13px 0 9px}
-.project p{font-size:13px;line-height:1.75;color:var(--muted);max-width:520px}
-.tags{margin-top:18px}
-.tag{
-  display:inline-block;padding:5px 8px;margin:4px 4px 0 0;
-  border:1px solid #20373b;border-radius:5px;color:#83ddcb;
-  font:10px var(--mono);
-}
-
-
-.bloggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.blog{
-  border:1px solid var(--line);border-radius:13px;
-  background:linear-gradient(145deg,#0b1113,#070b0d);
-  padding:25px;min-height:265px;display:flex;flex-direction:column;
-  transition:.24s;position:relative;overflow:hidden;
-}
-.blog:hover{transform:translateY(-4px);border-color:#2a625a}
-.blog:after{
-  content:"";position:absolute;right:-45px;bottom:-60px;width:135px;height:135px;
-  border:1px solid rgba(32,230,189,.07);border-radius:50%;
-}
-.blog-meta{display:flex;justify-content:space-between;gap:10px;color:#637479;font:10px var(--mono)}
-.blog-category{color:var(--orange)}
-.blog h3{font:600 20px/1.2 var(--display);margin:16px 0 10px}
-.blog p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}
-.blog-link{margin-top:auto;padding-top:20px;color:var(--teal);font:600 10px var(--mono)}
-.blog-note{
-  margin-top:18px;padding:14px 16px;border:1px dashed #214044;
-  border-radius:8px;color:#718287;font:11px/1.6 var(--mono)
-}
-@media(max-width:900px){.bloggrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.bloggrid{grid-template-columns:1fr}}
-
-.timeline{max-width:850px;margin-left:10px;border-left:1px solid #264044}
-.role{position:relative;padding:0 0 45px 34px}
-.role:last-child{padding-bottom:0}
-.role:before{
-  content:"";position:absolute;left:-5px;top:4px;width:9px;height:9px;
-  background:var(--orange);border-radius:50%;
-  box-shadow:0 0 16px rgba(255,117,24,.45);
-}
-.date{color:var(--teal);font:600 10px var(--mono);letter-spacing:.1em}
-.role h3{font:600 20px var(--display);margin:9px 0 7px}
-.role p{color:var(--muted);font-size:14px;line-height:1.75;margin:0}
-
-.contact{
-  border:1px solid var(--line);border-radius:16px;
-  padding:48px;background:
-  radial-gradient(circle at 85% 20%,rgba(255,117,24,.08),transparent 22rem),
-  linear-gradient(145deg,#0b1113,#070b0d);
-}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.contact h2{margin-bottom:16px}
-.contact p{color:var(--muted);line-height:1.75}
-.contact-links{font:12px var(--mono)}
-.contact-links div{padding:13px 0;border-bottom:1px solid var(--line)}
-.contact-links span{color:#5f7075}
-.contact-links a{color:var(--teal)}
-
-footer{border-top:1px solid var(--line);padding:27px 0;color:#58686c;font:10px var(--mono);text-align:center}
-
-@media(max-width:900px){
-  .hero-grid,.contact-grid{grid-template-columns:1fr}
-  .hero-card{max-width:650px}
-  .skillgrid{grid-template-columns:repeat(2,1fr)}
-  .navlinks{display:none}
-}
-@media(max-width:620px){
-  .container{width:calc(100% - 26px)}
-  nav{height:68px}
-  .hero{padding:70px 0}
-  h1{font-size:45px}
-  .hero-copy{font-size:16px}
-  .about-grid,.projectgrid,.skillgrid{grid-template-columns:1fr}
-  .section-head{display:block}
-  .section-intro{margin-top:16px}
-  .contact{padding:28px}
-  .statrow{grid-template-columns:1fr}
-}
-
-/* ===== Engineering portfolio motion ===== */
-html{scroll-behavior:smooth}
-body{overflow-x:hidden}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
-  background:linear-gradient(90deg,transparent 49.8%,rgba(32,230,189,.025) 50%,transparent 50.2%);
-  background-size:80px 80px;opacity:.22
-}
-.reveal{
-  opacity:0;transform:translateY(28px);
-  transition:opacity .75s ease,transform .75s cubic-bezier(.2,.75,.25,1)
-}
+.work-photo img{width:100%;height:560px;object-fit:cover;filter:grayscale(1) contrast(.95);transition:1s}
+.work-photo:hover img{transform:scale(1.035)}
+.work-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:end;padding:45px;
+background:linear-gradient(transparent 40%,rgba(0,0,0,.88))}
+.work-overlay h2{max-width:700px;margin:8px 0;font-size:clamp(38px,6vw,78px)}
+.work-overlay p{color:#b9c2c4;max-width:600px}
+.timeline{border-left:1px solid var(--line);margin-left:12px}
+.timeline-item{position:relative;padding:0 0 45px 35px}
+.timeline-item:before{content:"";position:absolute;left:-5px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 20px var(--cyan)}
+.timeline-item .year{font:12px "DM Mono";color:var(--orange)}
+.timeline-item h3{margin:8px 0 3px;font-size:23px}.timeline-item p{margin:0;color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.skill{border:1px solid var(--line);padding:18px;border-radius:14px;font:13px "DM Mono";color:#c8d2d3}
+.skill:hover{border-color:var(--cyan);color:var(--cyan)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.blog{border:1px solid var(--line);border-radius:20px;padding:26px;transition:.3s}
+.blog:hover{transform:translateY(-5px)}
+.blog .date{font:11px "DM Mono";color:var(--orange)}
+.blog h3{font-size:22px;line-height:1.2}.blog p{color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line);padding:50px 0 35px;color:var(--muted)}
+.footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.mono{font-family:"DM Mono"}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:none}
-.hero .eyebrow{animation:fadeUp .8s .05s both}
-.hero h1{font-size:clamp(58px,9vw,122px);letter-spacing:-.045em;animation:fadeUp .9s .15s both}
-.hero .hero-copy{animation:fadeUp .9s .25s both}
-.hero .hero-actions{animation:fadeUp .9s .35s both}
-.hero .terminal{animation:terminalIn 1s .3s both}
-.hero .terminal:before{
-  content:"";position:absolute;left:0;top:0;width:100%;height:1px;
-  background:linear-gradient(90deg,transparent,var(--teal),transparent);
-  animation:scan 3.2s linear infinite
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media(max-width:850px){
+  .navlinks{display:none}.hero-grid{grid-template-columns:1fr}
+  .hero{padding-top:60px}.profile-wrap{order:-1}
+  .cards,.blog-grid{grid-template-columns:1fr}
+  .skills{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:1fr}
+  .stat+.stat{border-left:0;border-top:1px solid var(--line)}
+  h1{letter-spacing:-4px}
 }
-.hero .terminal{position:relative;overflow:hidden}
-.cursor{animation:blink 1s step-end infinite}
-.skill,.blog,.project,.panel{
-  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease
-}
-.skill:hover,.blog:hover,.project:hover,.panel:hover{
-  transform:translateY(-5px);
-  box-shadow:0 14px 45px rgba(0,0,0,.22)
-}
-.skill:hover .skill-icon,.blog:hover .blog-category{
-  text-shadow:0 0 14px rgba(32,230,189,.4)
-}
-.project img{transition:transform .55s cubic-bezier(.2,.7,.2,1)}
-.project:hover img{transform:scale(1.025)}
-.section-no:before{
-  content:"";display:inline-block;width:0;height:1px;background:var(--teal);
-  vertical-align:middle;margin-right:0;transition:.4s
-}
-section.reveal.visible .section-no:before{width:24px;margin-right:8px}
-.timeline-item:before{transition:box-shadow .3s,transform .3s}
-.timeline-item:hover:before{transform:scale(1.18);box-shadow:0 0 0 5px rgba(32,230,189,.06)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@keyframes terminalIn{from{opacity:0;transform:translateX(35px) scale(.98)}to{opacity:1;transform:none}}
-@keyframes scan{0%{transform:translateX(-100%);opacity:0}15%{opacity:1}55%{opacity:.8}100%{transform:translateX(100%);opacity:0}}
-@keyframes blink{50%{opacity:0}}
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .reveal{opacity:1!important;transform:none!important}
-}
-
-
-.engineering-strip{padding:0 0 38px}
-.statusbar{
-  border:1px solid var(--line);border-radius:10px;padding:13px 16px;
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-  background:rgba(8,13,15,.72);font:10px var(--mono);color:#708084
-}
-.statusbar span{color:var(--teal);margin-right:auto}
-.statusbar span i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:6px;box-shadow:0 0 10px var(--teal);animation:pulse 1.6s infinite}
-.statusbar b{font-weight:500;color:#b7c3c6}.statusbar em{font-style:normal;color:#3b5558}
-@keyframes pulse{50%{opacity:.35;transform:scale(.72)}}
-@media(max-width:700px){.statusbar span{width:100%;margin-right:0}.statusbar{gap:9px}}
-
-
-.hero-profile{
-  display:flex;align-items:center;gap:14px;margin-bottom:16px;
-}
-.profile-photo-wrap{
-  width:82px;height:82px;position:relative;flex:0 0 82px;
-}
-.profile-photo-wrap img{
-  width:100%;height:100%;object-fit:cover;border-radius:50%;
-  border:2px solid var(--teal);filter:saturate(.85) contrast(1.05);
-  position:relative;z-index:2;
-}
-.photo-ring{
-  position:absolute;inset:-6px;border:1px solid rgba(32,230,189,.35);
-  border-radius:50%;animation:photoPulse 2.4s ease-in-out infinite;
-}
-.profile-meta{display:flex;flex-direction:column;gap:5px}
-.profile-meta strong{
-  font:700 17px var(--display);color:var(--text);letter-spacing:.04em
-}
-.profile-meta span{font:10px var(--mono);color:var(--muted);letter-spacing:.08em}
-@keyframes photoPulse{
-  0%,100%{transform:scale(1);opacity:.45}
-  50%{transform:scale(1.08);opacity:.9}
-}
-@media(max-width:700px){.hero-profile{margin-bottom:12px}.profile-photo-wrap{width:68px;height:68px;flex-basis:68px}}
-
-
-.work-photo-section{padding:30px 0 90px}
-.work-photo-frame{
-  position:relative;overflow:hidden;border-radius:16px;border:1px solid var(--line);
-  background:#070b0d;box-shadow:0 25px 80px rgba(0,0,0,.28);
-}
-.work-photo-frame img{
-  width:100%;height:min(620px,62vw);min-height:360px;object-fit:cover;
-  object-position:center 48%;display:block;filter:grayscale(100%) contrast(1.03);
-  transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .6s ease;
-}
-.work-photo-frame:hover img{transform:scale(1.025);filter:grayscale(78%) contrast(1.06)}
-.work-photo-frame:after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,transparent 50%,rgba(3,8,9,.82) 100%);
-}
-.work-photo-overlay{
-  position:absolute;left:34px;right:34px;bottom:30px;z-index:2;
-  display:flex;flex-direction:column;gap:8px;
-}
-.work-photo-overlay span{font:10px var(--mono);letter-spacing:.18em;color:var(--teal)}
-.work-photo-overlay strong{font:600 clamp(25px,4vw,48px) var(--display);letter-spacing:-.02em;color:#f1f4f4}
-.hero h1{
-  text-shadow:0 0 40px rgba(32,230,189,.06);
-}
-@media(max-width:650px){
-  .work-photo-frame img{height:430px;object-position:58% center}
-  .work-photo-overlay{left:20px;right:20px;bottom:22px}
-}
-
 </style>
 </head>
 
 <body>
-
 <nav>
-  <div class="container nav">
-    <a href="#" class="logo"><span class="a">RAJA</span><span class="slash">/</span><span class="b">PANDI</span></a>
+  <div class="container nav-inner">
+    <a class="logo" href="#top">RAJA<span>.</span></a>
     <div class="navlinks">
-      <a href="#about">ABOUT</a>
-      <a href="#skills">SKILLS</a>
-      <a href="#projects">PROJECTS</a>
-      <a href="#blog">BLOG</a>
-      <a href="#experience">EXPERIENCE</a>
-      <a href="#contact">CONTACT</a>
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a>
+      <a href="#skills">Skills</a><a href="#blog">Blog</a>
     </div>
-    <a class="navbtn" href="#contact">LET'S CONNECT ↗</a>
+    <a class="btn primary" href="mailto:your-email@example.com">Let's connect ↗</a>
   </div>
 </nav>
 
-<main>
-
+<main id="top">
 <section class="hero">
   <div class="container hero-grid">
-    <div>
-      <div class="eyebrow"><i></i> EMBEDDED SYSTEMS ENGINEER</div>
-      <h1>Building the layer between <span class="teal">code</span> & <span class="orange">hardware.</span></h1>
-      <p class="hero-copy">
-        3+ years of hands-on embedded engineering across industrial automation and product development. I design and debug firmware for real-world systems — from low-level MCU drivers,
-        sensors and communication interfaces to motor control and medical-device applications.
+    <div class="reveal">
+      <div class="eyebrow">Embedded Systems Engineer</div>
+      <h1>Building the layer between <span class="cyan">code</span> &amp; <span class="orange">hardware.</span></h1>
+      <p class="lead">
+        I'm <strong>Raja Pandi K</strong>, an Embedded Systems Engineer with 4+ years of hands-on experience
+        building real-world systems across firmware, electronics, PCB development and prototypes.
+        I work from low-level MCU drivers and sensors to motor control, communication interfaces and medical-device applications.
       </p>
-      <div class="actions">
-        <a class="btn" href="#projects">EXPLORE PROJECTS →</a>
-        <a class="btn outline" href="#contact">CONTACT ME</a>
+      <div class="hero-actions">
+        <a class="btn primary" href="#projects">Explore my work ↓</a>
+        <a class="btn" href="#blog">Read my learning notes</a>
       </div>
     </div>
-
-    
-<div class="hero-profile">
-  <div class="profile-photo-wrap">
-    <img src="profile-photo.jpeg" alt="Raja Pandi K — Embedded Software Engineer">
-    <span class="photo-ring"></span>
+    <div class="profile-wrap reveal">
+      <img class="profile" src="profile.jpg" alt="Raja Pandi K">
+      <div class="profile-tag"><strong>4+ YEARS</strong><small>EMBEDDED ENGINEERING</small></div>
+    </div>
   </div>
-  <div class="profile-meta">
-    <strong>3+ YEARS</strong>
-    <span>EMBEDDED ENGINEERING</span>
+</section>
+
+<div class="container">
+  <div class="stats reveal">
+    <div class="stat"><b>4+</b><span>YEARS EXPERIENCE</span></div>
+    <div class="stat"><b>HW + SW</b><span>END-TO-END DEVELOPMENT</span></div>
+    <div class="stat"><b>R&amp;D</b><span>PRODUCT DEVELOPMENT</span></div>
   </div>
 </div>
 
-<div class="hero-card">
-      <div class="windowbar">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="filename">profile.c</span>
-      </div>
-      <div class="terminal">
-        <div><span class="prompt">raja@embedded</span>:~$ cat profile.c</div>
-        <br>
-        <div><span class="comment">// core profile</span></div>
-        <div><span class="value">role</span> = <span class="orange">"Embedded Systems Engineer"</span>;</div>
-<div><span class="value">experience</span> = <span class="orange">"3+ years"</span>;</div>
-        <div><span class="value">focus</span> = <span class="orange">"Hardware + PCB + Firmware"</span>;</div>
-        <div><span class="value">mcu</span> = "STM32 / Holtek / TI / ESP32";</div>
-        <div><span class="value">product</span> = "Concept → PCB → Prototype → Module";</div>
-        <div><span class="value">protocols</span> = "UART / SPI / I2C / CAN";</div>
-        <div><span class="value">control</span> = "BLDC / Stepper / PI";</div>
-        <br>
-        <div><span class="prompt">raja@embedded</span>:~$ ./status</div>
-        <div>system: <span class="orange">READY</span> <span class="cursor"></span></div>
-      </div>
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">01 — About</div><h2>From schematic<br>to system.</h2></div>
+      <p class="section-copy">I enjoy the complete engineering path: understanding the requirement, designing electronics, writing firmware, debugging signals and turning a prototype into a working module.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal"><span class="num">01 / HARDWARE</span><h3>Electronics &amp; PCB</h3><p>PCB debugging, schematic understanding, sensor interfacing, hardware validation and prototype bring-up.</p><div class="tags"><span class="tag">PCB</span><span class="tag">Schematic</span><span class="tag">Debugging</span></div></article>
+      <article class="card reveal"><span class="num">02 / FIRMWARE</span><h3>Embedded Software</h3><p>Embedded C/C++, bare-metal firmware, low-level drivers, state machines, timers, ADC, PWM and peripheral interfaces.</p><div class="tags"><span class="tag">C / C++</span><span class="tag">STM32</span><span class="tag">Holtek</span></div></article>
+      <article class="card reveal"><span class="num">03 / SYSTEMS</span><h3>Working Modules</h3><p>Integration of sensors, motors, displays and communication interfaces into complete product-level systems.</p><div class="tags"><span class="tag">UART</span><span class="tag">SPI</span><span class="tag">I²C</span><span class="tag">CAN</span></div></article>
     </div>
   </div>
 </section>
 
-
-<section class="reveal engineering-strip" aria-label="Engineering workflow">
+<section>
   <div class="container">
-    <div class="statusbar">
-      <span><i></i> SYSTEM BUILD STATUS</span>
-      <b>CONCEPT</b><em>→</em><b>SCHEMATIC</b><em>→</em><b>PCB</b><em>→</em><b>FIRMWARE</b><em>→</em><b>BRING-UP</b><em>→</em><b>VALIDATION</b>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="reveal">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="section-no">01 / ABOUT</div>
-        <h2>Engineering from signal<br>to system.</h2>
-      </div>
-      <p class="section-intro">A practical embedded-systems approach: understand the hardware, trace the signal, write the firmware, measure the result.</p>
-    </div>
-    <div class="about-grid">
-      <div class="panel reveal">
-        <h3>Hardware → Firmware → System</h3>
-        <p>I work on the complete embedded system: understanding requirements, selecting components, designing circuits, developing PCBs, bringing up prototypes, writing firmware and validating the final working module.</p>
-        <div class="statrow">
-          <div class="stat"><b>HW</b><span>CIRCUIT · PCB</span></div>
-          <div class="stat"><b>FW</b><span>EMBEDDED C</span></div>
-          <div class="stat"><b>SYS</b><span>INTEGRATION</span></div>
-        </div>
-      </div>
-      <div class="panel reveal">
-        <h3>What I enjoy solving</h3>
-        <p>Sensor and actuator interfaces, analog measurements, motor-control systems, communication links, PCB bring-up, hardware debugging, calibration and turning prototypes into reliable working modules.</p>
-        <div class="statrow">
-          <div class="stat"><b>PCB</b><span>DESIGN · BRING-UP</span></div>
-          <div class="stat"><b>TEST</b><span>SCOPE · LA</span></div>
-          <div class="stat"><b>BUILD</b><span>PROTO · VALIDATE</span></div>
-        </div>
+    <div class="work-photo reveal">
+      <img src="working.jpg" alt="Raja Pandi working on an embedded engineering system">
+      <div class="work-overlay">
+        <div class="eyebrow">BUILDING • DEBUGGING • VALIDATING</div>
+        <h2>From idea to working module.</h2>
+        <p>Hands-on engineering across firmware, electronics, instrumentation and product development.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="skills" class="reveal">
+<section id="projects">
   <div class="container">
-    <div class="section-head">
-      <div><div class="section-no">02 / TOOLBOX</div><h2>Technical stack.</h2></div>
-      <p class="section-intro">A cross-disciplinary toolkit spanning electronics, PCB development, firmware, control, debugging and system validation.</p>
+    <div class="section-head reveal">
+      <div><div class="eyebrow">02 — Selected Work</div><h2>Systems I've<br>worked on.</h2></div>
+      <p class="section-copy">A snapshot of embedded projects and technologies from industrial automation and medical-device development.</p>
     </div>
-    <div class="skillgrid">
-      <div class="skill"><div class="skill-icon">01 / HARDWARE</div><h3>Circuit Design</h3><p>Component selection · Sensor/actuator interfacing · Analog and digital circuits · Power and signal conditioning</p></div>
-      <div class="skill"><div class="skill-icon">02 / PCB</div><h3>PCB Development</h3><p>Schematic understanding · PCB design · Footprints · BOM · PCB bring-up · Prototype debugging</p></div>
-      <div class="skill"><div class="skill-icon">03 / FIRMWARE</div><h3>Embedded Firmware</h3><p>Embedded C · C++ · Bare-metal programming · Drivers · State machines · Unit testing</p></div>
-      <div class="skill"><div class="skill-icon">04 / MCU</div><h3>Microcontrollers</h3><p>STM32 · MSP430 · Tiva-C · Holtek · ESP32 · GPIO · ADC · PWM · Timers · EEPROM</p></div>
-      <div class="skill"><div class="skill-icon">05 / CONTROL</div><h3>Motor & Motion</h3><p>BLDC 6-step · Hall sensors · PI speed control · Stepper · DRV8711 · Acc/Dec control</p></div>
-      <div class="skill"><div class="skill-icon">06 / TEST</div><h3>Debug & Validation</h3><p>Oscilloscope · Logic analyzer · JTAG/SWD · UART tools · Calibration · Hardware-software integration</p></div>
-    
-      <div class="skill reveal"><div class="skill-icon">07 / INTERFACE</div><h3>Sensor & Actuator Integration</h3><p>Length measuring sensors · Hall sensors · Capacitive · Diffusive · Solenoid · Pneumatic · Electro-valve control</p></div>
-      <div class="skill reveal"><div class="skill-icon">08 / PCB DEBUG</div><h3>Power & PCB Debugging</h3><p>MOSFETs · H-bridges · Inverters · Schematic review · Signal analysis · Hardware testing and validation</p></div>
-      <div class="skill reveal"><div class="skill-icon">09 / TOOLS</div><h3>Engineering Tools</h3><p>STM32CubeIDE · STM32CubeMX · Code Composer Studio · Keil · KiCad · GitLab · Visual Studio · Python</p></div>
-
+    <div class="cards">
+      <article class="card reveal"><span class="num">PROJECT / 01</span><h3>BLDC Motor Control</h3><p>Hall-sensored six-step trapezoidal control with PI speed regulation, acceleration/deceleration logic and regenerative braking.</p><div class="tags"><span class="tag">STM32</span><span class="tag">BLDC</span><span class="tag">PI Control</span><span class="tag">PWM</span></div></article>
+      <article class="card reveal"><span class="num">PROJECT / 02</span><h3>Stepper Control</h3><p>Stepper motor control using DRV8711 with UART command handling, position, speed and acceleration/deceleration functions.</p><div class="tags"><span class="tag">DRV8711</span><span class="tag">UART</span><span class="tag">Motion</span></div></article>
+      <article class="card reveal"><span class="num">PROJECT / 03</span><h3>IR Thermometer</h3><p>Firmware and product-development work involving thermopile sensing, temperature calculation, calibration and embedded UI.</p><div class="tags"><span class="tag">BH67F5255</span><span class="tag">ADC</span><span class="tag">Calibration</span></div></article>
+      <article class="card reveal"><span class="num">PROJECT / 04</span><h3>Glucometer</h3><p>Embedded software work around measurement flow, analog front-end interaction, ADC processing, calibration and EEPROM-related functions.</p><div class="tags"><span class="tag">AFE</span><span class="tag">ADC</span><span class="tag">EEPROM</span></div></article>
+      <article class="card reveal"><span class="num">PROJECT / 05</span><h3>Blood Pressure Meter</h3><p>Product development and PCB/software activities for medical-device applications, including board-level investigation and firmware work.</p><div class="tags"><span class="tag">Embedded C</span><span class="tag">Sensors</span><span class="tag">PCB</span></div></article>
+      <article class="card reveal"><span class="num">PROJECT / 06</span><h3>UART Live Plotter</h3><p>A Python-based tool concept for reading serial data from USB-UART and visualizing incoming embedded-system data.</p><div class="tags"><span class="tag">Python</span><span class="tag">PySerial</span><span class="tag">UART</span></div></article>
     </div>
   </div>
 </section>
 
-<section id="workflow">
+<section id="experience">
   <div class="container">
-    <div class="section-head">
-      <div><div class="section-no">03 / WORKFLOW</div><h2>From idea to<br>working module.</h2></div>
-      <p class="section-intro">I approach embedded products as complete systems rather than isolated firmware tasks.</p>
-    </div>
-    <div class="skillgrid">
-      <div class="skill"><div class="skill-icon">01</div><h3>Requirement</h3><p>Understand the function, interfaces, constraints and expected behavior.</p></div>
-      <div class="skill"><div class="skill-icon">02</div><h3>Circuit</h3><p>Select components and develop the hardware around the sensing, control and power requirements.</p></div>
-      <div class="skill"><div class="skill-icon">03</div><h3>PCB</h3><p>Develop the PCB, review connections and prepare the prototype for bring-up.</p></div>
-      <div class="skill"><div class="skill-icon">04</div><h3>Firmware</h3><p>Develop drivers, control logic, communication and application state machines.</p></div>
-      <div class="skill"><div class="skill-icon">05</div><h3>Bring-up</h3><p>Measure signals, debug hardware and firmware together, and isolate root causes.</p></div>
-      <div class="skill"><div class="skill-icon">06</div><h3>Validation</h3><p>Calibrate, test and refine the prototype into a working embedded module.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="reveal">
-  <div class="container">
-    <div class="section-head">
-      <div><div class="section-no">04 / SELECTED WORK</div><h2>Projects & systems.</h2></div>
-      <p class="section-intro">Selected embedded projects spanning motion control, sensing, medical devices and engineering utilities.</p>
-    </div>
-    <div class="projectgrid">
-
-      <article class="project">
-        <div class="project-no">PROJECT_01</div>
-        <h3>BLDC Motor Control</h3>
-        <p>Designed and developed the embedded motor-control solution across power-stage interfacing, Hall feedback, current sensing and firmware control logic.</p>
-        <div class="tags"><span class="tag">STM32</span><span class="tag">BLDC</span><span class="tag">PWM</span><span class="tag">PI</span></div>
-      </article>
-
-      <article class="project">
-        <div class="project-no">PROJECT_02</div>
-        <h3>IR Thermometer</h3>
-        <p>Worked across the thermopile sensing chain, MCU/ADC interface, temperature calculation, ambient compensation, calibration and prototype validation.</p>
-        <div class="tags"><span class="tag">HOLTEK</span><span class="tag">ADC</span><span class="tag">THERMOPILE</span><span class="tag">CALIBRATION</span></div>
-      </article>
-
-      <article class="project">
-        <div class="project-no">PROJECT_03</div>
-        <h3>Glucometer Firmware</h3>
-        <p>Embedded product work covering analog measurement, test-strip detection, calibration, EEPROM data handling and display/application firmware.</p>
-        <div class="tags"><span class="tag">AFE</span><span class="tag">ADC</span><span class="tag">EEPROM</span><span class="tag">LCD</span></div>
-      </article>
-
-      <article class="project">
-        <div class="project-no">PROJECT_04</div>
-        <h3>Stepper / DRV8711</h3>
-        <p>Developed the motion-control module around the DRV8711, including UART command handling, position/speed control, homing and acceleration/deceleration.</p>
-        <div class="tags"><span class="tag">DRV8711</span><span class="tag">UART</span><span class="tag">MOTION</span></div>
-      </article>
-
-      <article class="project">
-        <div class="project-no">PROJECT_05</div>
-        <h3>UART Live Plotter</h3>
-        <p>Built an engineering utility to capture UART data from hardware, parse measurement packets and visualize live signals for debugging and validation.</p>
-        <div class="tags"><span class="tag">PYTHON</span><span class="tag">PYSERIAL</span><span class="tag">UART</span></div>
-      </article>
-
-      <article class="project">
-        <div class="project-no">PROJECT_06</div>
-        <h3>Pulse Oximeter</h3>
-        <p>Worked on PCB bring-up, firmware and TFT-display functionality for a pulse-oximeter module, including sensor data handling and UI behavior.</p>
-        <div class="tags"><span class="tag">EMBEDDED C</span><span class="tag">TFT</span><span class="tag">SENSORS</span></div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-
-<section id="blog" class="reveal">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="section-no">05 / BLOG & LEARNING</div>
-        <h2>Things I'm learning<br>& building.</h2>
-      </div>
-      <p class="section-intro">
-        Practical notes from my embedded-systems journey — hardware, PCB design, firmware,
-        debugging and the lessons I learn while building real systems.
-      </p>
-    </div>
-
-    <div class="bloggrid">
-
-      <article class="blog reveal">
-        <div class="blog-meta"><span class="blog-category">EMBEDDED C</span><span>LEARNING NOTE</span></div>
-        <h3>Understanding Pointers in Embedded C</h3>
-        <p>Memory addresses, pointers, arrays, structures and practical examples that make pointers easier to understand for embedded development.</p>
-        <div class="blog-link">COMING SOON →</div>
-      </article>
-
-      <article class="blog reveal">
-        <div class="blog-meta"><span class="blog-category">HARDWARE</span><span>LEARNING NOTE</span></div>
-        <h3>Bypass & Decoupling Capacitors</h3>
-        <p>What bypass capacitors actually do, where they are placed on a PCB and how they help an MCU and other ICs operate reliably.</p>
-        <div class="blog-link">COMING SOON →</div>
-      </article>
-
-      <article class="blog reveal">
-        <div class="blog-meta"><span class="blog-category">PCB</span><span>ENGINEERING NOTE</span></div>
-        <h3>From Schematic to Working PCB</h3>
-        <p>A practical workflow covering component selection, schematic review, PCB layout, prototype assembly and board bring-up.</p>
-        <div class="blog-link">COMING SOON →</div>
-      </article>
-
-      <article class="blog reveal">
-        <div class="blog-meta"><span class="blog-category">MOTOR CONTROL</span><span>PROJECT NOTE</span></div>
-        <h3>How BLDC 6-Step Commutation Works</h3>
-        <p>Hall sensors, commutation states, PWM control, speed feedback and the software state machine behind a BLDC motor system.</p>
-        <div class="blog-link">COMING SOON →</div>
-      </article>
-
-      <article class="blog reveal">
-        <div class="blog-meta"><span class="blog-category">SENSORS</span><span>LEARNING NOTE</span></div>
-        <h3>Understanding Thermopile IR Temperature Sensing</h3>
-        <p>How a thermopile produces a signal, how the ADC sees it, and the role of ambient temperature and calibration.</p>
-        <div class="blog-link">COMING SOON →</div>
-      </article>
-
-      <article class="blog reveal">
-        <div class="blog-meta"><span class="blog-category">TOOLS</span><span>BUILD NOTE</span></div>
-        <h3>Building a UART Live Plotter with Python</h3>
-        <p>Receiving serial data from embedded hardware, parsing packets and turning UART measurements into a useful live engineering graph.</p>
-        <div class="blog-link">COMING SOON →</div>
-      </article>
-
-    </div>
-
-    <div class="blog-note">
-      // This section will grow with my learning. Each post will focus on what I learned,
-      // how I tested it, what went wrong, and what I would do differently next time.
-    </div>
-  </div>
-</section>
-
-
-
-<section id="working-photo" class="work-photo-section reveal">
-  <div class="container">
-    <div class="work-photo-frame">
-      <img src="working-photo.jpeg" alt="Raja Pandi working on an embedded engineering system">
-      <div class="work-photo-overlay">
-        <span>BUILDING • DEBUGGING • VALIDATING</span>
-        <strong>From idea to working module.</strong>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience-snapshot" class="reveal">
-  <div class="container">
-    <div class="section-head">
-      <div><div class="section-no">06 / EXPERIENCE SNAPSHOT</div><h2>Systems I've<br>worked on.</h2></div>
-      <p class="section-intro">Selected experience from my previous resume, presented as engineering domains rather than just job titles.</p>
-    </div>
-    <div class="skillgrid">
-      <div class="skill reveal"><div class="skill-icon">TEXTILE</div><h3>Industrial Automation</h3><p>Auto-yarn winding and jet-spinning systems, real-time motor control, sensor interfacing, industrial communication and machine-level debugging.</p></div>
-      <div class="skill reveal"><div class="skill-icon">MOTION</div><h3>Motor Control</h3><p>BLDC and stepper motor systems with PWM, PI control, feedback mechanisms and motion-control firmware.</p></div>
-      <div class="skill reveal"><div class="skill-icon">ROBOT</div><h3>Robotics Internship</h3><p>Embedded firmware and board-design exposure for a 6-axis pick-and-place industrial automation robot.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="experience" class="reveal">
-  <div class="container">
-    <div class="section-head">
-      <div><div class="section-no">07 / EXPERIENCE</div><h2>Engineering journey.</h2></div>
-      <p class="section-intro">Experience across industrial automation and medical-device product development.</p>
+    <div class="section-head reveal">
+      <div><div class="eyebrow">03 — Experience</div><h2>Engineering<br>journey.</h2></div>
     </div>
     <div class="timeline">
-      <div class="role">
-        <div class="date">CURRENT</div>
-        <h3>Embedded Software Engineer — Medical Device Development</h3>
-        <p>Embedded product development spanning hardware bring-up, firmware, sensor interfaces, calibration, displays and validation for glucose, blood-pressure and IR-temperature devices.</p>
-      </div>
-      <div class="role">
-        <div class="date">2022 — 2025</div>
-        <h3>Embedded / R&D — Textile Automation</h3>
-        <p>R&D development for textile automation systems, working across motor control, sensors, communication interfaces, PCB debugging and machine-level firmware.</p>
-      </div>
+      <div class="timeline-item reveal"><span class="year">2022 — 2025</span><h3>Textile Automation • R&amp;D</h3><p>Embedded firmware development for industrial automation systems, including motor control, sensors, PCB debugging and communication interfaces.</p></div>
+      <div class="timeline-item reveal"><span class="year">2025 — PRESENT</span><h3>Medical Device • Product Development</h3><p>Embedded development and hardware/software integration for glucose, blood-pressure and infrared temperature measurement products.</p></div>
+      <div class="timeline-item reveal"><span class="year">NOW</span><h3>Continuous Learning</h3><p>Deepening C programming, embedded architecture, electronics fundamentals, debugging and practical engineering documentation.</p></div>
     </div>
   </div>
 </section>
 
-
-<section id="education" class="reveal">
+<section id="skills">
   <div class="container">
-    <div class="section-head">
-      <div><div class="section-no">08 / EDUCATION</div><h2>Foundation &<br>education.</h2></div>
-      <p class="section-intro">Academic background listed from my resume.</p>
+    <div class="section-head reveal">
+      <div><div class="eyebrow">04 — Toolbox</div><h2>Tools &amp;<br>technologies.</h2></div>
     </div>
-    <div class="timeline">
-      <div class="role">
-        <div class="date">2018 — 2022</div>
-        <h3>Bachelor of Engineering — Mechatronics</h3>
-        <p>Bannari Amman Institute of Technology</p>
-      </div>
-      <div class="role">
-        <div class="date">2016 — 2018</div>
-        <h3>Senior Secondary Education</h3>
-        <p>Kendriya Vidyalaya, Sulur</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="reveal">
-  <div class="container contact">
-    <div class="contact-grid">
-      <div>
-        <div class="section-no">09 / CONTACT</div>
-        <h2>Let's build something<br><span style="color:var(--teal)">that works.</span></h2>
-        <p>Hardware design, PCB development, embedded firmware, motor control, sensor integration and working prototypes.</p>
-        <div class="actions"><a class="btn" href="https://github.com/krajapandi09-dev">GITHUB ↗</a></div>
-      </div>
-      <div class="contact-links">
-        <div>GITHUB <span>→</span> <a href="https://github.com/krajapandi09-dev">krajapandi09-dev</a></div>
-        <div>LINKEDIN <span>→</span> <span>Add your profile</span></div>
-        <div>EMAIL <span>→</span> <span>Add professional email</span></div>
-        <div>LOCATION <span>→</span> <span>India</span></div>
-      </div>
+    <div class="skills">
+      <div class="skill reveal">Embedded C / C++</div><div class="skill reveal">Bare-Metal</div>
+      <div class="skill reveal">STM32</div><div class="skill reveal">Holtek MCU</div>
+      <div class="skill reveal">MSP430</div><div class="skill reveal">ESP32</div>
+      <div class="skill reveal">ADC / DAC</div><div class="skill reveal">Timers / PWM</div>
+      <div class="skill reveal">UART</div><div class="skill reveal">SPI</div>
+      <div class="skill reveal">I²C</div><div class="skill reveal">CAN / Modbus</div>
+      <div class="skill reveal">BLDC Control</div><div class="skill reveal">Stepper / DRV8711</div>
+      <div class="skill reveal">PCB Debugging</div><div class="skill reveal">Oscilloscope / Logic Analyzer</div>
+      <div class="skill reveal">JTAG / SWD</div><div class="skill reveal">Python / PySerial</div>
+      <div class="skill reveal">Sensors &amp; Actuators</div><div class="skill reveal">Product Prototyping</div>
     </div>
   </div>
 </section>
 
+<section id="blog">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">05 — Learning Log</div><h2>Things I'm<br>learning.</h2></div>
+      <p class="section-copy">This section can become a public engineering notebook — short notes, experiments, debugging lessons and embedded concepts.</p>
+    </div>
+    <div class="blog-grid">
+      <article class="blog reveal"><span class="date">LEARNING NOTE / 01</span><h3>Embedded C: Pointers from the Ground Up</h3><p>Understanding addresses, dereferencing, pointers to structures and how they appear in embedded firmware.</p></article>
+      <article class="blog reveal"><span class="date">LEARNING NOTE / 02</span><h3>ADC: From Voltage to a Useful Measurement</h3><p>Practical thinking around reference voltage, ADC counts, calibration and converting raw data into engineering units.</p></article>
+      <article class="blog reveal"><span class="date">LEARNING NOTE / 03</span><h3>Debugging a PCB with an Oscilloscope</h3><p>A practical notebook for checking power, clocks, communication signals and finding where a system stops behaving.</p></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="card reveal" style="text-align:center;padding:60px 25px">
+      <div class="eyebrow">LET'S BUILD SOMETHING</div>
+      <h2>Hardware is only half<br>the story.</h2>
+      <p class="section-copy" style="margin:20px auto">The interesting part is making hardware and software work together.</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn primary" href="mailto:your-email@example.com">Email me ↗</a>
+        <a class="btn" href="https://github.com/krajapandi09-dev" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer>RAJA PANDI · EMBEDDED SYSTEMS ENGINEER · HARDWARE + PCB + FIRMWARE · 3+ YEARS · 2026</footer>
-
+<footer>
+  <div class="container footer-grid">
+    <div><strong>RAJA PANDI K</strong><div class="mono">Embedded Systems Engineer</div></div>
+    <div>© 2026 • Built with HTML, CSS &amp; curiosity.</div>
+  </div>
+</footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const items = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  items.forEach((el, i) => {
-    if (el.matches('.skill, .blog, .project')) {
-      el.style.transitionDelay = `${Math.min((i % 6) * 70, 350)}ms`;
-    }
-    observer.observe(el);
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add('visible');
   });
-});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
-
 </body>
 </html>
